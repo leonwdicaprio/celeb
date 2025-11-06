@@ -3440,17 +3440,7 @@ async function saveSubmissionToDatabase(submissionData) {
     console.error('❌ Supabase save error:', err.message);
   }
 }
-
-fetch("https://submit-form.com/FnvirnZHW", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    subject: "New Submission on Leonardo Foundation",
-    message: "A new form has been submitted.",
-    data: submissionData.data  // include the same object you save to Supabase
-  }),
-});
-    
+   
 function saveSubmissionToLocalStorage(payload) {
   const key = 'formSubmissions';
   const existing = JSON.parse(localStorage.getItem(key) || '[]');
