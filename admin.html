@@ -275,398 +275,324 @@
     </div>
   </div>
 
-  <script>
-    /* ============================================================
-       ADMIN JS (kept structure; upgraded to Supabase backend)
-       ============================================================ */
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ============================================================
+   ADMIN DASHBOARD — Supabase Realtime Enabled (Production Ready)
+   ============================================================ */
 
-    // ******* EDIT THESE TWO VALUES ONLY *******
-    const SUPABASE_URL = "https://nnuvrnztrfmipnwbnbzn.supabase.co";          // e.g. https://nnuvrnztrfmipnwbnbzn.supabase.co
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udXZybnp0cmZtaXBud2JuYnpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNTY5NDUsImV4cCI6MjA3NzkzMjk0NX0.WCPq3ZeUu3fiEEEbWkAIuQfz6Ka428zud7qMIc4hHds"; // your anon key string
-    // ******************************************
+/* ---------- CONFIG ---------- */
+const SUPABASE_URL = "https://nnuvrnztrfmipnwbnbzn.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udXZybnp0cmZtaXBud2JuYnpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNTY5NDUsImV4cCI6MjA3NzkzMjk0NX0.WCPq3ZeUu3fiEEEbWkAIuQfz6Ka428zud7qMIc4hHds";
+const ADMIN_PASSWORD = "admin123";
 
-    // Default admin password (keep your original)
-    const ADMIN_PASSWORD = 'admin123';
+/* ---------- INIT SUPABASE ---------- */
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const LS_KEY = "formSubmissions";
 
-    // DOM elements (as in your original)
-    const loginContainer = document.getElementById('loginContainer');
-    const loginForm = document.getElementById('loginForm');
-    const adminPassword = document.getElementById('adminPassword');
-    const errorMessage = document.getElementById('errorMessage');
-    const adminDashboard = document.getElementById('adminDashboard');
-    const adminLogout = document.getElementById('adminLogout');
-    const adminTabs = document.querySelectorAll('.admin-tab');
-    const adminTabContents = document.querySelectorAll('.admin-tab-content');
-    const replyModal = document.getElementById('replyModal');
-    const closeReply = document.getElementById('closeReply');
-    const replyForm = document.getElementById('replyForm');
-    const replyToInfo = document.getElementById('replyToInfo');
-    const replySubject = document.getElementById('replySubject');
-    const replyMessage = document.getElementById('replyMessage');
+/* ---------- DOM ELEMENTS ---------- */
+const loginContainer = document.getElementById("loginContainer");
+const loginForm = document.getElementById("loginForm");
+const adminPassword = document.getElementById("adminPassword");
+const errorMessage = document.getElementById("errorMessage");
+const adminDashboard = document.getElementById("adminDashboard");
+const adminLogout = document.getElementById("adminLogout");
+const adminTabs = document.querySelectorAll(".admin-tab");
+const adminTabContents = document.querySelectorAll(".admin-tab-content");
+const replyModal = document.getElementById("replyModal");
+const closeReply = document.getElementById("closeReply");
+const replyForm = document.getElementById("replyForm");
+const replyToInfo = document.getElementById("replyToInfo");
+const replySubject = document.getElementById("replySubject");
+const replyMessage = document.getElementById("replyMessage");
 
-    // Stats vs Lists (avoid ID collision by scoping like you had)
-    const statEls = {
-      total: document.querySelector('.stats-summary #totalSubmissions'),
-      contact: document.querySelector('.stats-summary #contactSubmissions'),
-      donation: document.querySelector('.stats-summary #donationSubmissions'),
-      application: document.querySelector('.stats-summary #applicationSubmissions'),
-      newsletter: document.querySelector('.stats-summary #newsletterSubmissions'),
+/* ---------- STATS & LISTS ---------- */
+const statEls = {
+  total: document.querySelector(".stats-summary #totalSubmissions"),
+  contact: document.querySelector(".stats-summary #contactSubmissions"),
+  donation: document.querySelector(".stats-summary #donationSubmissions"),
+  application: document.querySelector(".stats-summary #applicationSubmissions"),
+  newsletter: document.querySelector(".stats-summary #newsletterSubmissions"),
+};
+const listEls = {
+  all: document.querySelector("#all-tab #allSubmissions"),
+  contact: document.querySelector("#contact-tab #contactSubmissions"),
+  donation: document.querySelector("#donation-tab #donationSubmissions"),
+  application: document.querySelector("#application-tab #applicationSubmissions"),
+  newsletter: document.querySelector("#newsletter-tab #newsletterSubmissions"),
+};
+
+/* ============================================================
+   AUTHENTICATION
+   ============================================================ */
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (adminPassword.value === ADMIN_PASSWORD) {
+    loginContainer.style.display = "none";
+    adminDashboard.classList.add("active");
+    sessionStorage.setItem("adminLoggedIn", "true");
+    await loadSubmissions();
+    enableRealtimeListeners(); // ✅ activate live updates
+  } else {
+    errorMessage.classList.add("show");
+    setTimeout(() => errorMessage.classList.remove("show"), 3000);
+  }
+});
+
+adminLogout.addEventListener("click", () => {
+  adminDashboard.classList.remove("active");
+  loginContainer.style.display = "flex";
+  sessionStorage.removeItem("adminLoggedIn");
+  supabase.removeAllChannels(); // cleanup realtime listeners
+});
+
+/* ============================================================
+   TABS
+   ============================================================ */
+adminTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const target = tab.getAttribute("data-tab");
+    adminTabs.forEach(t => t.classList.remove("active"));
+    adminTabContents.forEach(tc => tc.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(`${target}-tab`).classList.add("active");
+  });
+});
+
+/* ============================================================
+   SUPABASE DATA HANDLING
+   ============================================================ */
+function typeToTable(type) {
+  switch (type) {
+    case "contact": return "contacts";
+    case "donation": return "donations";
+    case "application": return "applications";
+    case "newsletter": return "newsletter";
+    default: return null;
+  }
+}
+
+async function supaSelectAll(table) {
+  const { data, error } = await supabase
+    .from(table)
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data || [];
+}
+
+function normalizeRows(rows, type) {
+  return (rows || []).map(r => ({
+    id: r.id?.toString?.() || String(r.id),
+    type,
+    date: r.created_at || r.date || new Date().toISOString(),
+    replied: !!r.replied,
+    data: r.data && typeof r.data === "object" ? r.data : r,
+  }));
+}
+
+async function getAllSubmissions() {
+  try {
+    const [contacts, donations, applications, newsletters] = await Promise.all([
+      supaSelectAll("contacts"),
+      supaSelectAll("donations"),
+      supaSelectAll("applications"),
+      supaSelectAll("newsletter"),
+    ]);
+    const c = normalizeRows(contacts, "contact");
+    const d = normalizeRows(donations, "donation");
+    const a = normalizeRows(applications, "application");
+    const n = normalizeRows(newsletters, "newsletter");
+    const all = [...c, ...d, ...a, ...n].sort((x, y) => new Date(y.date) - new Date(x.date));
+    return { all, byType: { contact: c, donation: d, application: a, newsletter: n } };
+  } catch (err) {
+    console.warn("Supabase fetch failed, fallback to localStorage:", err);
+    const arr = JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+    return {
+      all: arr,
+      byType: {
+        contact: arr.filter(s => s.type === "contact"),
+        donation: arr.filter(s => s.type === "donation"),
+        application: arr.filter(s => s.type === "application"),
+        newsletter: arr.filter(s => s.type === "newsletter"),
+      },
     };
-    const listEls = {
-      all: document.querySelector('#all-tab #allSubmissions'),
-      contact: document.querySelector('#contact-tab #contactSubmissions'),
-      donation: document.querySelector('#donation-tab #donationSubmissions'),
-      application: document.querySelector('#application-tab #applicationSubmissions'),
-      newsletter: document.querySelector('#newsletter-tab #newsletterSubmissions'),
-    };
+  }
+}
 
-    const LS_KEY = 'formSubmissions';
+/* ============================================================
+   REALTIME LIVE UPDATES
+   ============================================================ */
+function enableRealtimeListeners() {
+  const tables = ["contacts", "donations", "applications", "newsletter"];
+  tables.forEach(table => {
+    supabase.channel(`realtime:${table}`)
+      .on("postgres_changes", { event: "*", schema: "public", table }, async payload => {
+        console.log(`🔔 ${table} change:`, payload.eventType);
+        await loadSubmissions(); // reload UI when any change happens
+      })
+      .subscribe();
+  });
+}
 
-    // Initialize Supabase (v2)
-    let supabase;
-    document.addEventListener('DOMContentLoaded', () => {
-      // global from CDN
-      if (window.supabase) {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      }
+/* ============================================================
+   BACKEND UPDATES
+   ============================================================ */
+async function markRepliedInBackend(id, type) {
+  const table = typeToTable(type);
+  if (!table) return;
+  const { error } = await supabase.from(table).update({ replied: true }).eq("id", id);
+  if (error) console.error("Mark replied failed:", error);
+}
+
+async function deleteInBackend(id, type) {
+  const table = typeToTable(type);
+  if (!table) return;
+  const { error } = await supabase.from(table).delete().eq("id", id);
+  if (error) console.error("Delete failed:", error);
+}
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+function renderList(container, submissions) {
+  if (!container) return;
+  if (!submissions.length) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <p>No submissions found</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  submissions.forEach(s => {
+    const data = s.data || {};
+    let fieldsHtml = "";
+    Object.entries(data).forEach(([key, val]) => {
+      const label = key.charAt(0).toUpperCase() + key.slice(1);
+      fieldsHtml += `
+        <div class="submission-field">
+          <div class="submission-field-label">${label}</div>
+          <div class="submission-field-value">${val ?? ""}</div>
+        </div>`;
     });
 
-    // ---------- Auth ----------
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (adminPassword.value === ADMIN_PASSWORD) {
-        loginContainer.style.display = 'none';
-        adminDashboard.classList.add('active');
-        adminPassword.value = '';
-        sessionStorage.setItem('adminLoggedIn', 'true');
-        await loadSubmissions();
-      } else {
-        errorMessage.classList.add('show');
-        adminPassword.value = '';
-        setTimeout(() => errorMessage.classList.remove('show'), 3000);
+    const card = document.createElement("div");
+    card.className = "submission-card";
+    card.dataset.id = s.id;
+    card.dataset.type = s.type;
+    card.innerHTML = `
+      <div class="submission-header">
+        <div class="submission-type">${s.type}</div>
+        <div class="submission-date">${new Date(s.date).toLocaleString()}</div>
+      </div>
+      <div class="submission-body">${fieldsHtml}</div>
+      <div class="submission-actions">
+        <button class="submission-btn reply-btn" data-id="${s.id}" data-type="${s.type}" data-email="${data.email || ""}" data-name="${data.name || data.firstName || "User"}">
+          <i class="fas fa-reply"></i> Reply
+        </button>
+        <button class="submission-btn delete-btn" data-id="${s.id}" data-type="${s.type}">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+        ${s.replied ? '<span class="submission-replied"><i class="fas fa-check-circle"></i> Replied</span>' : ""}
+      </div>`;
+    container.appendChild(card);
+  });
+
+  container.querySelectorAll(".reply-btn").forEach(btn =>
+    btn.addEventListener("click", () => {
+      const { id, email, name, type } = btn.dataset;
+      openReplyModal(id, email, name, type);
+    })
+  );
+
+  container.querySelectorAll(".delete-btn").forEach(btn =>
+    btn.addEventListener("click", async () => {
+      if (confirm("Are you sure you want to delete this submission?")) {
+        await deleteSubmission(btn.dataset.id, btn.dataset.type);
       }
-    });
+    })
+  );
+}
 
-    adminLogout.addEventListener('click', () => {
-      adminDashboard.classList.remove('active');
-      loginContainer.style.display = 'flex';
-      sessionStorage.removeItem('adminLoggedIn');
-    });
+/* ============================================================
+   LOAD + UPDATE STATS
+   ============================================================ */
+async function loadSubmissions() {
+  const { all, byType } = await getAllSubmissions();
+  renderList(listEls.all, all);
+  renderList(listEls.contact, byType.contact);
+  renderList(listEls.donation, byType.donation);
+  renderList(listEls.application, byType.application);
+  renderList(listEls.newsletter, byType.newsletter);
+  updateStats(all, byType);
+}
 
-    // ---------- Tabs ----------
-    adminTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetTab = tab.getAttribute('data-tab');
-        adminTabs.forEach(t => t.classList.remove('active'));
-        adminTabContents.forEach(tc => tc.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(`${targetTab}-tab`).classList.add('active');
-      });
-    });
+function updateStats(all, byType) {
+  statEls.total.textContent = all.length;
+  statEls.contact.textContent = byType.contact.length;
+  statEls.donation.textContent = byType.donation.length;
+  statEls.application.textContent = byType.application.length;
+  statEls.newsletter.textContent = byType.newsletter.length;
+}
 
-    // ---------- Data access helpers ----------
-    async function supaSelectAll(table) {
-      if (!supabase) throw new Error('Supabase not initialized');
-      // Prefer 'date' if present else 'created_at'
-      let { data, error } = await supabase
-        .from(table)
-        .select('*')
-        .order('date', { ascending: false })
-        .limit(1000);
+/* ============================================================
+   REPLY + DELETE
+   ============================================================ */
+function openReplyModal(id, email, name, type) {
+  replyModal.classList.add("active");
+  replyToInfo.innerHTML = `<strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}`;
+  replySubject.value = `Re: Your submission to Leonardo DiCaprio Foundation`;
+  replyForm.dataset.id = id;
+  replyForm.dataset.email = email;
+  replyForm.dataset.type = type;
+}
 
-      if (error) {
-        // If ordering by 'date' fails (column missing), fall back to created_at
-        ({ data, error } = await supabase
-          .from(table)
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(1000));
-      }
-      if (error) throw error;
-      return data || [];
-    }
+closeReply.addEventListener("click", () => replyModal.classList.remove("active"));
 
-    function normalizeRows(rows, type) {
-      // Your original UI expects: { id, type, date, replied, data:{} }
-      // We try to map common shapes: { id, date|created_at, replied, data(json) or flat fields }
-      return (rows || []).map(r => {
-        const date = r.date || r.created_at || new Date().toISOString();
-        const replied = typeof r.replied === 'boolean' ? r.replied : false;
-        let dataObj;
-        if (r.data && typeof r.data === 'object') {
-          dataObj = r.data;
-        } else {
-          // take a shallow clone without internal meta fields
-          const clone = { ...r };
-          delete clone.created_at;
-          delete clone.updated_at;
-          delete clone.replied;
-          delete clone.date;
-          delete clone.type;
-          dataObj = clone;
-        }
-        return {
-          id: r.id?.toString?.() || String(r.id),
-          type,
-          date,
-          replied,
-          data: dataObj
-        };
-      });
-    }
+replyForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const id = replyForm.dataset.id;
+  const email = replyForm.dataset.email;
+  const type = replyForm.dataset.type;
+  const subject = replySubject.value;
+  const message = replyMessage.value;
 
-    async function getAllSubmissions() {
-      // Try Supabase; if it fails, fallback to localStorage to keep UI usable
-      try {
-        const [contacts, donations, applications, newsletters] = await Promise.all([
-          supaSelectAll('contacts'),
-          supaSelectAll('donations'),
-          supaSelectAll('applications'),
-          supaSelectAll('newsletter')
-        ]);
+  await markRepliedInBackend(id, type);
 
-        const c = normalizeRows(contacts, 'contact');
-        const d = normalizeRows(donations, 'donation');
-        const a = normalizeRows(applications, 'application');
-        const n = normalizeRows(newsletters, 'newsletter');
+  const replies = JSON.parse(localStorage.getItem("replies") || "[]");
+  replies.push({ id, email, subject, message, date: new Date().toISOString() });
+  localStorage.setItem("replies", JSON.stringify(replies));
 
-        const all = [...c, ...d, ...a, ...n].sort((x, y) => new Date(y.date) - new Date(x.date));
-        return { all, byType: { contact: c, donation: d, application: a, newsletter: n } };
-      } catch (err) {
-        console.warn('Supabase fetch failed, falling back to localStorage:', err);
-        const raw = localStorage.getItem(LS_KEY);
-        const arr = raw ? JSON.parse(raw) : [];
-        const all = Array.isArray(arr) ? arr : [];
-        return {
-          all,
-          byType: {
-            contact: all.filter(s => s.type === 'contact'),
-            donation: all.filter(s => s.type === 'donation'),
-            application: all.filter(s => s.type === 'application'),
-            newsletter: all.filter(s => s.type === 'newsletter'),
-          }
-        };
-      }
-    }
+  alert(`Reply logged for ${email}!`);
+  replyModal.classList.remove("active");
+  await loadSubmissions();
+});
 
-    async function markRepliedInBackend(submissionId, type) {
-      if (!supabase) return;
-      const table = typeToTable(type);
-      if (!table) return;
-      const { error } = await supabase.from(table).update({ replied: true }).eq('id', submissionId);
-      if (error) throw error;
-    }
+async function deleteSubmission(id, type) {
+  try {
+    await deleteInBackend(id, type);
+  } catch (err) {
+    console.warn("Delete failed, removing locally:", err);
+    const updated = (JSON.parse(localStorage.getItem(LS_KEY) || "[]")).filter((s) => s.id !== id);
+    localStorage.setItem(LS_KEY, JSON.stringify(updated));
+  }
+  await loadSubmissions();
+}
 
-    async function deleteInBackend(submissionId, type) {
-      if (!supabase) return;
-      const table = typeToTable(type);
-      if (!table) return;
-      const { error } = await supabase.from(table).delete().eq('id', submissionId);
-      if (error) throw error;
-    }
-
-    function typeToTable(type) {
-      switch (type) {
-        case 'contact': return 'contacts';
-        case 'donation': return 'donations';
-        case 'application': return 'applications';
-        case 'newsletter': return 'newsletter';
-        default: return null;
-      }
-    }
-
-    // ---------- Render ----------
-    function renderList(container, submissions) {
-      if (!container) return;
-      if (!submissions.length) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-inbox"></i>
-            <p>No submissions found</p>
-          </div>
-        `;
-        return;
-      }
-
-      // newest first (already sorted, but keep)
-      submissions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      container.innerHTML = '';
-      submissions.forEach(submission => {
-        const card = document.createElement('div');
-        card.className = 'submission-card';
-        card.dataset.id = submission.id;
-        card.dataset.type = submission.type;
-
-        // Build fields from submission.data
-        let fieldsHtml = '';
-        const data = submission.data || {};
-        Object.entries(data).forEach(([key, value]) => {
-          if (['type','id','date','replied'].includes(key)) return;
-          const label = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1').trim();
-          const safeVal = (value === undefined || value === null) ? '' : String(value);
-          fieldsHtml += `
-            <div class="submission-field">
-              <div class="submission-field-label">${label}:</div>
-              <div class="submission-field-value">${safeVal}</div>
-            </div>
-          `;
-        });
-
-        card.innerHTML = `
-          <div class="submission-header">
-            <div class="submission-type">${(submission.type || 'Unknown').charAt(0).toUpperCase() + (submission.type || 'Unknown').slice(1)}</div>
-            <div class="submission-date">${submission.date ? new Date(submission.date).toLocaleString() : ''}</div>
-          </div>
-          <div class="submission-body">
-            ${fieldsHtml}
-          </div>
-          <div class="submission-actions">
-            <button class="submission-btn reply-btn" data-id="${submission.id}" data-type="${submission.type}" data-email="${data.email || ''}" data-name="${data.name || data.firstName || 'User'}">
-              <i class="fas fa-reply"></i> Reply
-            </button>
-            <button class="submission-btn delete-btn" data-id="${submission.id}" data-type="${submission.type}">
-              <i class="fas fa-trash"></i> Delete
-            </button>
-            ${submission.replied ? '<span class="submission-replied"><i class="fas fa-check-circle"></i> Replied</span>' : ''}
-          </div>
-        `;
-
-        container.appendChild(card);
-      });
-
-      // Attach actions
-      container.querySelectorAll('.reply-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-id');
-          const email = btn.getAttribute('data-email');
-          const name = btn.getAttribute('data-name');
-          openReplyModal(id, email, name);
-        });
-      });
-
-      container.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          const id = btn.getAttribute('data-id');
-          const type = btn.getAttribute('data-type');
-          if (confirm('Are you sure you want to delete this submission?')) {
-            await deleteSubmission(id, type);
-          }
-        });
-      });
-    }
-
-    async function loadSubmissions() {
-      const { all, byType } = await getAllSubmissions();
-
-      renderList(listEls.all, all);
-      renderList(listEls.contact, byType.contact);
-      renderList(listEls.donation, byType.donation);
-      renderList(listEls.application, byType.application);
-      renderList(listEls.newsletter, byType.newsletter);
-
-      updateStats(all, byType);
-    }
-
-    function updateStats(all, byType) {
-      const total = all.length;
-      const c = byType.contact.length;
-      const d = byType.donation.length;
-      const a = byType.application.length;
-      const n = byType.newsletter.length;
-
-      if (statEls.total) statEls.total.textContent = total;
-      if (statEls.contact) statEls.contact.textContent = c;
-      if (statEls.donation) statEls.donation.textContent = d;
-      if (statEls.application) statEls.application.textContent = a;
-      if (statEls.newsletter) statEls.newsletter.textContent = n;
-    }
-
-    // ---------- Reply flow ----------
-    function openReplyModal(id, email, name) {
-      replyModal.classList.add('active');
-      replyToInfo.innerHTML = `<strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}`;
-      replySubject.value = `Re: Your submission to Leonardo DiCaprio Foundation`;
-      replyMessage.value = '';
-      replyForm.dataset.id = id;
-      replyForm.dataset.email = email;
-      // find type from the visible card (for mark as replied later)
-      const card = document.querySelector(`.submission-card[data-id="${CSS.escape(id)}"]`);
-      replyForm.dataset.type = card?.dataset?.type || '';
-    }
-
-    closeReply.addEventListener('click', () => {
-      replyModal.classList.remove('active');
-    });
-
-    replyForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const id = replyForm.dataset.id;
-      const email = replyForm.dataset.email;
-      const type = replyForm.dataset.type;
-      const subject = replySubject.value;
-      const message = replyMessage.value;
-
-      try {
-        // mark replied in backend
-        await markRepliedInBackend(id, type);
-
-        // also mirror a simple local log so UI has history in offline
-        const replies = JSON.parse(localStorage.getItem('replies') || '[]');
-        replies.push({
-          submissionId: id,
-          email,
-          subject,
-          message,
-          date: new Date().toISOString()
-        });
-        localStorage.setItem('replies', JSON.stringify(replies));
-
-        alert(`Reply logged for ${email}!`);
-        replyModal.classList.remove('active');
-        await loadSubmissions();
-      } catch (err) {
-        console.error('Reply error:', err);
-        alert('Failed to mark as replied. Please try again.');
-      }
-    });
-
-    // ---------- Delete ----------
-    async function deleteSubmission(id, type) {
-      try {
-        await deleteInBackend(id, type);
-      } catch (err) {
-        console.warn('Backend delete failed, trying to remove from localStorage mirror:', err);
-        const updated = (JSON.parse(localStorage.getItem(LS_KEY) || '[]')).filter(s => s.id !== id);
-        localStorage.setItem(LS_KEY, JSON.stringify(updated));
-      }
-      await loadSubmissions();
-    }
-
-    // ---------- Session keep / restore ----------
-    window.addEventListener('load', async () => {
-      const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-      if (isLoggedIn === 'true') {
-        loginContainer.style.display = 'none';
-        adminDashboard.classList.add('active');
-        await loadSubmissions();
-      }
-    });
-
-    window.addEventListener('beforeunload', () => {
-      if (adminDashboard.classList.contains('active')) {
-        sessionStorage.setItem('adminLoggedIn', 'true');
-      } else {
-        sessionStorage.removeItem('adminLoggedIn');
-      }
-    });
-
-    // Live refresh if another tab updates localStorage mirror
-    window.addEventListener('storage', async (e) => {
-      if (e.key === LS_KEY && adminDashboard.classList.contains('active')) {
-        await loadSubmissions();
-      }
-    });
-  </script>
+/* ============================================================
+   SESSION & AUTO RESTORE
+   ============================================================ */
+window.addEventListener("load", async () => {
+  if (sessionStorage.getItem("adminLoggedIn") === "true") {
+    loginContainer.style.display = "none";
+    adminDashboard.classList.add("active");
+    await loadSubmissions();
+    enableRealtimeListeners();
+  }
+});
+</script>
 </body>
 </html>
