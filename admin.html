@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Leonardo DiCaprio Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #1a5f3f;
+      --secondary-color: #2d8659;
+      --accent-color: #4caf50;
+      --light-color: #f5f5f5;
+      --dark-color: #111;
+      --text-color: #333;
+      --transition: all 0.3s ease;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Login Styles */
+    .login-container {
+      display:flex; justify-content:center; align-items:center;
+      min-height:100vh; padding:2rem;
+    }
+    .login-card {
+      background:white; border-radius:20px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.1);
+      width:100%; max-width:400px; padding:3rem; text-align:center;
+      animation:fadeInUp 0.5s ease;
+    }
+    .login-logo { font-size:2.5rem; color:var(--primary-color); margin-bottom:1rem; }
+    .login-title { font-size:1.8rem; color:var(--primary-color); margin-bottom:2rem; }
+    .login-form { display:flex; flex-direction:column; gap:1.5rem; }
+    .login-input {
+      padding:1rem; border:2px solid #e0e0e0; border-radius:8px; font-size:1rem; transition:var(--transition);
+    }
+    .login-input:focus { outline:none; border-color:var(--accent-color); box-shadow:0 0 0 3px rgba(76,175,80,0.1); }
+    .login-btn {
+      padding:1rem; background:linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color:white; border:none; border-radius:8px; font-size:1.1rem; font-weight:600; cursor:pointer; transition:var(--transition);
+    }
+    .login-btn:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+    .error-message { color:#e74c3c; font-size:0.9rem; margin-top:0.5rem; display:none; }
+    .error-message.show { display:block; }
+
+    /* Dashboard */
+    .admin-dashboard { display:none; position:relative; flex:1; }
+    .admin-dashboard.active { display:block; }
+    .admin-header {
+      background:linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color:white; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+    .admin-title { font-size:1.5rem; font-weight:600; }
+    .admin-logout {
+      padding:0.5rem 1rem; background:rgba(255,255,255,0.2); color:white; border:none; border-radius:5px; cursor:pointer; transition:var(--transition);
+    }
+    .admin-logout:hover { background:rgba(255,255,255,0.3); }
+    .admin-content { padding:2rem; max-width:1400px; margin:0 auto; }
+
+    .admin-tabs { display:flex; gap:1rem; margin-bottom:2rem; border-bottom:2px solid #e0e0e0; flex-wrap:wrap; }
+    .admin-tab {
+      padding:0.8rem 1.5rem; background:none; border:none; color:var(--text-color); cursor:pointer; font-size:1rem; font-weight:500; transition:var(--transition); position:relative;
+    }
+    .admin-tab.active { color:var(--primary-color); }
+    .admin-tab.active::after {
+      content:''; position:absolute; bottom:-2px; left:0; width:100%; height:2px; background:var(--primary-color);
+    }
+    .admin-tab:hover { color:var(--primary-color); }
+    .admin-tab-content { display:none; }
+    .admin-tab-content.active { display:block; animation:fadeInUp 0.3s ease; }
+
+    .submissions-container { display:grid; gap:1.5rem; }
+    .submission-card {
+      background:white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); overflow:hidden; transition:var(--transition);
+    }
+    .submission-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+    .submission-header {
+      background:linear-gradient(135deg, #f8f9fa, #e9ecef); padding:1rem; display:flex; justify-content:space-between; align-items:center;
+    }
+    .submission-type { font-weight:600; color:var(--primary-color); }
+    .submission-date { color:#777; font-size:0.9rem; }
+    .submission-body { padding:1.5rem; }
+    .submission-field { margin-bottom:1rem; }
+    .submission-field-label { font-weight:600; color:var(--primary-color); margin-bottom:0.3rem; font-size:0.9rem; }
+    .submission-field-value { color:var(--text-color); word-break:break-word; }
+
+    .submission-actions { padding:1rem; background:#f8f9fa; display:flex; gap:1rem; flex-wrap:wrap; }
+    .submission-btn {
+      padding:0.5rem 1rem; border:none; border-radius:5px; cursor:pointer; font-size:0.9rem; transition:var(--transition); display:flex; align-items:center; gap:0.5rem;
+    }
+    .reply-btn { background:var(--accent-color); color:white; }
+    .reply-btn:hover { background:var(--secondary-color); }
+    .delete-btn { background:#e74c3c; color:white; }
+    .delete-btn:hover { background:#c0392b; }
+    .submission-replied { color:var(--secondary-color); font-weight:600; display:inline-flex; align-items:center; gap:0.35rem; }
+
+    .empty-state { text-align:center; padding:3rem; color:#777; }
+    .empty-state i { font-size:3rem; color:#e0e0e0; margin-bottom:1rem; }
+    .empty-state p { font-size:1.2rem; }
+
+    .stats-summary {
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;
+    }
+    .stat-card { background:white; padding:1.5rem; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:center; }
+    .stat-number { font-size:2rem; font-weight:bold; color:var(--primary-color); }
+    .stat-label { color:var(--text-color); margin-top:0.5rem; }
+
+    /* Reply Modal */
+    .reply-modal {
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background-color:rgba(0,0,0,0.8); z-index:5000; align-items:center; justify-content:center;
+    }
+    .reply-modal.active { display:flex; }
+    .reply-modal-content {
+      background:white; border-radius:20px; width:90%; max-width:600px; max-height:90vh; overflow-y:auto; position:relative; animation:slideUp 0.3s ease;
+    }
+    .reply-header {
+      background:linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color:white; padding:1.5rem; border-radius:20px 20px 0 0; position:relative;
+    }
+    .reply-title { font-size:1.5rem; margin-bottom:0.5rem; }
+    .close-reply {
+      position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.2); border:none; color:white;
+      width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:1rem; transition:var(--transition);
+    }
+    .close-reply:hover { background:rgba(255,255,255,0.3); transform:rotate(90deg); }
+    .reply-body { padding:1.5rem; }
+    .reply-form { display:flex; flex-direction:column; gap:1rem; }
+    .reply-to { padding:1rem; background:#f8f9fa; border-radius:8px; margin-bottom:1rem; }
+    .reply-to-label { font-weight:600; color:var(--primary-color); margin-bottom:0.5rem; }
+    .reply-to-info { color:var(--text-color); }
+    .reply-subject, .reply-message {
+      width:100%; padding:0.8rem; border:2px solid #e0e0e0; border-radius:8px; font-size:1rem; transition:var(--transition);
+    }
+    .reply-subject:focus, .reply-message:focus { outline:none; border-color:var(--accent-color); }
+    .reply-message { font-family:inherit; resize:vertical; min-height:150px; }
+    .send-reply-btn {
+      padding:0.8rem; background:linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color:white; border:none; border-radius:8px; font-size:1rem; font-weight:600; cursor:pointer; transition:var(--transition);
+      display:flex; align-items:center; justify-content:center; gap:0.5rem;
+    }
+    .send-reply-btn:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+
+    /* Animations */
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(50px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .login-card { padding:2rem; margin:1rem; }
+      .admin-tabs { flex-direction:column; }
+      .admin-tab { text-align:center; }
+      .submission-actions { flex-direction:column; }
+      .stats-summary { grid-template-columns:1fr; }
+    }
+  </style>
+
+  <!-- Supabase JS (CDN) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-card">
+      <div class="login-logo"><i class="fas fa-leaf"></i></div>
+      <h1 class="login-title">Admin Login</h1>
+      <form class="login-form" id="loginForm">
+        <input type="password" class="login-input" id="adminPassword" placeholder="Enter Password" required />
+        <div class="error-message" id="errorMessage">Incorrect password. Please try again.</div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div class="admin-dashboard" id="adminDashboard">
+    <div class="admin-header">
+      <h1 class="admin-title">Admin Dashboard</h1>
+      <button class="admin-logout" id="adminLogout">Logout</button>
+    </div>
+
+    <div class="admin-content">
+      <!-- Statistics Summary -->
+      <div class="stats-summary">
+        <div class="stat-card">
+          <div class="stat-number" id="totalSubmissions">0</div>
+          <div class="stat-label">Total Submissions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="contactSubmissions">0</div>
+          <div class="stat-label">Contact Forms</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="donationSubmissions">0</div>
+          <div class="stat-label">Donations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="applicationSubmissions">0</div>
+          <div class="stat-label">Applications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="newsletterSubmissions">0</div>
+          <div class="stat-label">Newsletter</div>
+        </div>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="all">All Submissions</button>
+        <button class="admin-tab" data-tab="contact">Contact Forms</button>
+        <button class="admin-tab" data-tab="donation">Donations</button>
+        <button class="admin-tab" data-tab="application">Job Applications</button>
+        <button class="admin-tab" data-tab="newsletter">Newsletter</button>
+      </div>
+
+      <div class="admin-tab-content active" id="all-tab">
+        <div class="submissions-container" id="allSubmissions"></div>
+      </div>
+
+      <div class="admin-tab-content" id="contact-tab">
+        <div class="submissions-container" id="contactSubmissions"></div>
+      </div>
+
+      <div class="admin-tab-content" id="donation-tab">
+        <div class="submissions-container" id="donationSubmissions"></div>
+      </div>
+
+      <div class="admin-tab-content" id="application-tab">
+        <div class="submissions-container" id="applicationSubmissions"></div>
+      </div>
+
+      <div class="admin-tab-content" id="newsletter-tab">
+        <div class="submissions-container" id="newsletterSubmissions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reply Modal -->
+  <div class="reply-modal" id="replyModal">
+    <div class="reply-modal-content">
+      <div class="reply-header">
+        <h2 class="reply-title">Reply to Submission</h2>
+        <button class="close-reply" id="closeReply"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="reply-body">
+        <div class="reply-to">
+          <div class="reply-to-label">Replying To:</div>
+          <div class="reply-to-info" id="replyToInfo"></div>
+        </div>
+        <form class="reply-form" id="replyForm">
+          <input type="text" class="reply-subject" id="replySubject" placeholder="Subject" required />
+          <textarea class="reply-message" id="replyMessage" placeholder="Your reply message..." required></textarea>
+          <button type="submit" class="send-reply-btn"><i class="fas fa-paper-plane"></i> Send Reply</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       ADMIN JS (kept structure; upgraded to Supabase backend)
+       ============================================================ */
+
+    // ******* EDIT THESE TWO VALUES ONLY *******
+    const SUPABASE_URL = "SUPABASE_URL_HERE";          // e.g. https://nnuvrnztrfmipnwbnbzn.supabase.co
+    const SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY_HERE"; // your anon key string
+    // ******************************************
+
+    // Default admin password (keep your original)
+    const ADMIN_PASSWORD = 'admin123';
+
+    // DOM elements (as in your original)
+    const loginContainer = document.getElementById('loginContainer');
+    const loginForm = document.getElementById('loginForm');
+    const adminPassword = document.getElementById('adminPassword');
+    const errorMessage = document.getElementById('errorMessage');
+    const adminDashboard = document.getElementById('adminDashboard');
+    const adminLogout = document.getElementById('adminLogout');
+    const adminTabs = document.querySelectorAll('.admin-tab');
+    const adminTabContents = document.querySelectorAll('.admin-tab-content');
+    const replyModal = document.getElementById('replyModal');
+    const closeReply = document.getElementById('closeReply');
+    const replyForm = document.getElementById('replyForm');
+    const replyToInfo = document.getElementById('replyToInfo');
+    const replySubject = document.getElementById('replySubject');
+    const replyMessage = document.getElementById('replyMessage');
+
+    // Stats vs Lists (avoid ID collision by scoping like you had)
+    const statEls = {
+      total: document.querySelector('.stats-summary #totalSubmissions'),
+      contact: document.querySelector('.stats-summary #contactSubmissions'),
+      donation: document.querySelector('.stats-summary #donationSubmissions'),
+      application: document.querySelector('.stats-summary #applicationSubmissions'),
+      newsletter: document.querySelector('.stats-summary #newsletterSubmissions'),
+    };
+    const listEls = {
+      all: document.querySelector('#all-tab #allSubmissions'),
+      contact: document.querySelector('#contact-tab #contactSubmissions'),
+      donation: document.querySelector('#donation-tab #donationSubmissions'),
+      application: document.querySelector('#application-tab #applicationSubmissions'),
+      newsletter: document.querySelector('#newsletter-tab #newsletterSubmissions'),
+    };
+
+    const LS_KEY = 'formSubmissions';
+
+    // Initialize Supabase (v2)
+    let supabase;
+    document.addEventListener('DOMContentLoaded', () => {
+      // global from CDN
+      if (window.supabase) {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    });
+
+    // ---------- Auth ----------
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (adminPassword.value === ADMIN_PASSWORD) {
+        loginContainer.style.display = 'none';
+        adminDashboard.classList.add('active');
+        adminPassword.value = '';
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        await loadSubmissions();
+      } else {
+        errorMessage.classList.add('show');
+        adminPassword.value = '';
+        setTimeout(() => errorMessage.classList.remove('show'), 3000);
+      }
+    });
+
+    adminLogout.addEventListener('click', () => {
+      adminDashboard.classList.remove('active');
+      loginContainer.style.display = 'flex';
+      sessionStorage.removeItem('adminLoggedIn');
+    });
+
+    // ---------- Tabs ----------
+    adminTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.getAttribute('data-tab');
+        adminTabs.forEach(t => t.classList.remove('active'));
+        adminTabContents.forEach(tc => tc.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`${targetTab}-tab`).classList.add('active');
+      });
+    });
+
+    // ---------- Data access helpers ----------
+    async function supaSelectAll(table) {
+      if (!supabase) throw new Error('Supabase not initialized');
+      // Prefer 'date' if present else 'created_at'
+      let { data, error } = await supabase
+        .from(table)
+        .select('*')
+        .order('date', { ascending: false })
+        .limit(1000);
+
+      if (error) {
+        // If ordering by 'date' fails (column missing), fall back to created_at
+        ({ data, error } = await supabase
+          .from(table)
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(1000));
+      }
+      if (error) throw error;
+      return data || [];
+    }
+
+    function normalizeRows(rows, type) {
+      // Your original UI expects: { id, type, date, replied, data:{} }
+      // We try to map common shapes: { id, date|created_at, replied, data(json) or flat fields }
+      return (rows || []).map(r => {
+        const date = r.date || r.created_at || new Date().toISOString();
+        const replied = typeof r.replied === 'boolean' ? r.replied : false;
+        let dataObj;
+        if (r.data && typeof r.data === 'object') {
+          dataObj = r.data;
+        } else {
+          // take a shallow clone without internal meta fields
+          const clone = { ...r };
+          delete clone.created_at;
+          delete clone.updated_at;
+          delete clone.replied;
+          delete clone.date;
+          delete clone.type;
+          dataObj = clone;
+        }
+        return {
+          id: r.id?.toString?.() || String(r.id),
+          type,
+          date,
+          replied,
+          data: dataObj
+        };
+      });
+    }
+
+    async function getAllSubmissions() {
+      // Try Supabase; if it fails, fallback to localStorage to keep UI usable
+      try {
+        const [contacts, donations, applications, newsletters] = await Promise.all([
+          supaSelectAll('contacts'),
+          supaSelectAll('donations'),
+          supaSelectAll('applications'),
+          supaSelectAll('newsletter')
+        ]);
+
+        const c = normalizeRows(contacts, 'contact');
+        const d = normalizeRows(donations, 'donation');
+        const a = normalizeRows(applications, 'application');
+        const n = normalizeRows(newsletters, 'newsletter');
+
+        const all = [...c, ...d, ...a, ...n].sort((x, y) => new Date(y.date) - new Date(x.date));
+        return { all, byType: { contact: c, donation: d, application: a, newsletter: n } };
+      } catch (err) {
+        console.warn('Supabase fetch failed, falling back to localStorage:', err);
+        const raw = localStorage.getItem(LS_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        const all = Array.isArray(arr) ? arr : [];
+        return {
+          all,
+          byType: {
+            contact: all.filter(s => s.type === 'contact'),
+            donation: all.filter(s => s.type === 'donation'),
+            application: all.filter(s => s.type === 'application'),
+            newsletter: all.filter(s => s.type === 'newsletter'),
+          }
+        };
+      }
+    }
+
+    async function markRepliedInBackend(submissionId, type) {
+      if (!supabase) return;
+      const table = typeToTable(type);
+      if (!table) return;
+      const { error } = await supabase.from(table).update({ replied: true }).eq('id', submissionId);
+      if (error) throw error;
+    }
+
+    async function deleteInBackend(submissionId, type) {
+      if (!supabase) return;
+      const table = typeToTable(type);
+      if (!table) return;
+      const { error } = await supabase.from(table).delete().eq('id', submissionId);
+      if (error) throw error;
+    }
+
+    function typeToTable(type) {
+      switch (type) {
+        case 'contact': return 'contacts';
+        case 'donation': return 'donations';
+        case 'application': return 'applications';
+        case 'newsletter': return 'newsletter';
+        default: return null;
+      }
+    }
+
+    // ---------- Render ----------
+    function renderList(container, submissions) {
+      if (!container) return;
+      if (!submissions.length) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>No submissions found</p>
+          </div>
+        `;
+        return;
+      }
+
+      // newest first (already sorted, but keep)
+      submissions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      container.innerHTML = '';
+      submissions.forEach(submission => {
+        const card = document.createElement('div');
+        card.className = 'submission-card';
+        card.dataset.id = submission.id;
+        card.dataset.type = submission.type;
+
+        // Build fields from submission.data
+        let fieldsHtml = '';
+        const data = submission.data || {};
+        Object.entries(data).forEach(([key, value]) => {
+          if (['type','id','date','replied'].includes(key)) return;
+          const label = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1').trim();
+          const safeVal = (value === undefined || value === null) ? '' : String(value);
+          fieldsHtml += `
+            <div class="submission-field">
+              <div class="submission-field-label">${label}:</div>
+              <div class="submission-field-value">${safeVal}</div>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="submission-header">
+            <div class="submission-type">${(submission.type || 'Unknown').charAt(0).toUpperCase() + (submission.type || 'Unknown').slice(1)}</div>
+            <div class="submission-date">${submission.date ? new Date(submission.date).toLocaleString() : ''}</div>
+          </div>
+          <div class="submission-body">
+            ${fieldsHtml}
+          </div>
+          <div class="submission-actions">
+            <button class="submission-btn reply-btn" data-id="${submission.id}" data-type="${submission.type}" data-email="${data.email || ''}" data-name="${data.name || data.firstName || 'User'}">
+              <i class="fas fa-reply"></i> Reply
+            </button>
+            <button class="submission-btn delete-btn" data-id="${submission.id}" data-type="${submission.type}">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+            ${submission.replied ? '<span class="submission-replied"><i class="fas fa-check-circle"></i> Replied</span>' : ''}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // Attach actions
+      container.querySelectorAll('.reply-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const email = btn.getAttribute('data-email');
+          const name = btn.getAttribute('data-name');
+          openReplyModal(id, email, name);
+        });
+      });
+
+      container.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          const type = btn.getAttribute('data-type');
+          if (confirm('Are you sure you want to delete this submission?')) {
+            await deleteSubmission(id, type);
+          }
+        });
+      });
+    }
+
+    async function loadSubmissions() {
+      const { all, byType } = await getAllSubmissions();
+
+      renderList(listEls.all, all);
+      renderList(listEls.contact, byType.contact);
+      renderList(listEls.donation, byType.donation);
+      renderList(listEls.application, byType.application);
+      renderList(listEls.newsletter, byType.newsletter);
+
+      updateStats(all, byType);
+    }
+
+    function updateStats(all, byType) {
+      const total = all.length;
+      const c = byType.contact.length;
+      const d = byType.donation.length;
+      const a = byType.application.length;
+      const n = byType.newsletter.length;
+
+      if (statEls.total) statEls.total.textContent = total;
+      if (statEls.contact) statEls.contact.textContent = c;
+      if (statEls.donation) statEls.donation.textContent = d;
+      if (statEls.application) statEls.application.textContent = a;
+      if (statEls.newsletter) statEls.newsletter.textContent = n;
+    }
+
+    // ---------- Reply flow ----------
+    function openReplyModal(id, email, name) {
+      replyModal.classList.add('active');
+      replyToInfo.innerHTML = `<strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}`;
+      replySubject.value = `Re: Your submission to Leonardo DiCaprio Foundation`;
+      replyMessage.value = '';
+      replyForm.dataset.id = id;
+      replyForm.dataset.email = email;
+      // find type from the visible card (for mark as replied later)
+      const card = document.querySelector(`.submission-card[data-id="${CSS.escape(id)}"]`);
+      replyForm.dataset.type = card?.dataset?.type || '';
+    }
+
+    closeReply.addEventListener('click', () => {
+      replyModal.classList.remove('active');
+    });
+
+    replyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = replyForm.dataset.id;
+      const email = replyForm.dataset.email;
+      const type = replyForm.dataset.type;
+      const subject = replySubject.value;
+      const message = replyMessage.value;
+
+      try {
+        // mark replied in backend
+        await markRepliedInBackend(id, type);
+
+        // also mirror a simple local log so UI has history in offline
+        const replies = JSON.parse(localStorage.getItem('replies') || '[]');
+        replies.push({
+          submissionId: id,
+          email,
+          subject,
+          message,
+          date: new Date().toISOString()
+        });
+        localStorage.setItem('replies', JSON.stringify(replies));
+
+        alert(`Reply logged for ${email}!`);
+        replyModal.classList.remove('active');
+        await loadSubmissions();
+      } catch (err) {
+        console.error('Reply error:', err);
+        alert('Failed to mark as replied. Please try again.');
+      }
+    });
+
+    // ---------- Delete ----------
+    async function deleteSubmission(id, type) {
+      try {
+        await deleteInBackend(id, type);
+      } catch (err) {
+        console.warn('Backend delete failed, trying to remove from localStorage mirror:', err);
+        const updated = (JSON.parse(localStorage.getItem(LS_KEY) || '[]')).filter(s => s.id !== id);
+        localStorage.setItem(LS_KEY, JSON.stringify(updated));
+      }
+      await loadSubmissions();
+    }
+
+    // ---------- Session keep / restore ----------
+    window.addEventListener('load', async () => {
+      const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+      if (isLoggedIn === 'true') {
+        loginContainer.style.display = 'none';
+        adminDashboard.classList.add('active');
+        await loadSubmissions();
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (adminDashboard.classList.contains('active')) {
+        sessionStorage.setItem('adminLoggedIn', 'true');
+      } else {
+        sessionStorage.removeItem('adminLoggedIn');
+      }
+    });
+
+    // Live refresh if another tab updates localStorage mirror
+    window.addEventListener('storage', async (e) => {
+      if (e.key === LS_KEY && adminDashboard.classList.contains('active')) {
+        await loadSubmissions();
+      }
+    });
+  </script>
+</body>
+</html>

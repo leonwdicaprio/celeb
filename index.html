@@ -1,0 +1,4173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo DiCaprio - Actor, Environmentalist & Philanthropist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a5f3f;
+            --secondary-color: #2d8659;
+            --accent-color: #4caf50;
+            --light-color: #f5f5f5;
+            --dark-color: #111;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/seed/leonardo-hero/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: calc(var(--header-height) * -1);
+            padding-top: var(--header-height);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            margin: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Section Base Styles */
+        section {
+            padding: 5rem 5%;
+            scroll-margin-top: var(--header-height);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Movies Section */
+        .movies {
+            background-color: white;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .movie-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .movie-image {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .movie-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .movie-card:hover .movie-image img {
+            transform: scale(1.1);
+        }
+
+        .movie-info {
+            padding: 1.5rem;
+        }
+
+        .movie-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .movie-year {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        .movie-description {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Enhanced Foundation Section */
+        .foundation {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .foundation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .foundation::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(26, 95, 63, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .mission-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .mission-statement {
+            font-size: 2rem;
+            color: var(--primary-color);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        .mission-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .pillar-card:hover .pillar-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .pillar-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .pillar-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .pillar-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-features {
+            list-style: none;
+        }
+
+        .pillar-features li {
+            padding: 0.5rem 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .pillar-features i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Impact Statistics */
+        .impact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .stat-description {
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Progress Bars Section */
+        .progress-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .progress-item {
+            margin-bottom: 2rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .progress-percentage {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 5px;
+            width: 0;
+            transition: width 2s ease;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-cta {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cta-primary {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-cta-secondary:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Environmental Work Section */
+        .environment {
+            background-color: white;
+        }
+
+        .environment-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .environment-text {
+            flex: 1;
+        }
+
+        .environment-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .environment-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .environment-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+        }
+
+        /* Community Section */
+        .community {
+            background-color: var(--light-color);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .community-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .community-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .community-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .community-card:hover .community-image img {
+            transform: scale(1.1);
+        }
+
+        .community-info {
+            padding: 1.5rem;
+        }
+
+        .community-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .community-description {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        /* News Section */
+        .news {
+            background-color: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-info {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .news-description {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .news-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .news-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .news-link i {
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .news-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--light-color);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-text p {
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter {
+            margin-top: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .newsletter-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        /* Donation Modal Styles */
+        .donation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .donation-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donation-modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .donation-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .donation-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .donation-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .close-donation {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .close-donation:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .donation-body {
+            padding: 2rem;
+        }
+
+        .donation-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .donation-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: bold;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section-title i {
+            color: var(--accent-color);
+        }
+
+        .donation-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        /* Wallet Address Section */
+        .wallet-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wallet-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wallet-address-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .wallet-address {
+            flex: 1;
+            padding: 0.8rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            padding: 0.8rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .copy-btn.copied {
+            background: #27ae60;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .qr-code img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.5rem;
+            background: white;
+        }
+
+        /* File Upload */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 2rem;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .file-upload.has-file .file-upload-label {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .file-info {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .file-name {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* File.io Download Link */
+        .file-link-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            display: none;
+        }
+
+        .file-link-container.show {
+            display: block;
+        }
+
+        .file-link-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .file-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-link-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .file-link-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .file-link-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .file-link-btn.copy {
+            background: #3498db;
+        }
+
+        .file-link-btn.copy:hover {
+            background: #2980b9;
+        }
+
+        .file-link-btn.download {
+            background: #27ae60;
+        }
+
+        .file-link-btn.download:hover {
+            background: #219653;
+        }
+
+        .upload-progress {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .upload-progress.show {
+            display: block;
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .upload-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .upload-status {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .upload-status.error {
+            color: #e74c3c;
+        }
+
+        .upload-status.success {
+            color: #27ae60;
+        }
+
+        /* Donation Amount */
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .amount-btn {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .amount-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .amount-btn.selected {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .custom-amount {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .custom-amount:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Job Application Modal Styles */
+        .job-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .job-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .job-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .job-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .close-job {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .close-job:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .job-body {
+            padding: 2rem;
+        }
+
+        .job-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .job-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .job-tab.active {
+            color: var(--primary-color);
+        }
+
+        .job-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .job-tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .job-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .job-item {
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .job-item:hover {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .job-item.selected {
+            border-color: var(--primary-color);
+            background: rgba(26, 95, 63, 0.1);
+        }
+
+        .job-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-item-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .job-item-type {
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .job-item-department {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-item-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .application-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .kyc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .document-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .document-upload:hover {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .document-upload.has-file {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .document-upload i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .document-upload p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .document-upload small {
+            color: #777;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .cv-upload {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px dashed #e0e0e0;
+            transition: var(--transition);
+        }
+
+        .cv-upload:hover {
+            border-color: var(--accent-color);
+        }
+
+        .cv-upload.has-file {
+            border-color: var(--accent-color);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .cv-upload i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .cv-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .cv-info.show {
+            display: block;
+        }
+
+        .submit-application-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-application-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-application-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-application {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .success-application.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .environment-content,
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .mission-statement {
+                font-size: 1.5rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .kyc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .pillar-card {
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .donation-modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .donation-header {
+                padding: 1.5rem;
+            }
+
+            .donation-title {
+                font-size: 1.5rem;
+            }
+
+            .donation-body {
+                padding: 1.5rem;
+            }
+
+            .amount-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .job-modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .job-header {
+                padding: 1.5rem;
+            }
+
+            .job-title {
+                font-size: 1.5rem;
+            }
+
+            .job-body {
+                padding: 1.5rem;
+            }
+
+            .job-tabs {
+                flex-wrap: wrap;
+            }
+
+            .job-tab {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 999;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal for Movie Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .modal-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-image {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .modal-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .modal-info {
+            flex: 2;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #777;
+        }
+
+        .modal-description {
+            line-height: 1.6;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#home" class="logo">
+                <i class="fas fa-leaf"></i> Leonardo DiCaprio
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#movies">Movies</a></li>
+                <li><a href="#foundation">Foundation</a></li>
+                <li><a href="#environment">Environment</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#foundation">Foundation</a></li>
+            <li><a href="#environment">Environment</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Leonardo DiCaprio</h1>
+            <p>Actor, Environmentalist & Philanthropist</p>
+            <a href="#about" class="btn">Learn More</a>
+            <a href="#foundation" class="btn btn-outline">Support Our Work</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Leonardo</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Leonardo Wilhelm DiCaprio is an American actor, film producer, and environmentalist. He has often played unconventional roles, particularly in biopics and period films.</p>
+                    <p>As of 2019, his films have grossed over $7.2 billion worldwide, and he has placed eight times in annual rankings of the world's highest-paid actors.</p>
+                    <p>Beyond his acting career, DiCaprio is a committed environmentalist who has actively worked to raise awareness about climate change and environmental issues through his foundation and various campaigns.</p>
+                    <a href="#movies" class="btn">View Filmography</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://picsum.photos/seed/leonardo-about/600/400.jpg" alt="Leonardo DiCaprio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section class="movies" id="movies">
+        <div class="container">
+            <h2 class="section-title">Filmography</h2>
+            <div class="movie-grid">
+                <div class="movie-card" data-movie-id="1">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/titanic/300/450.jpg" alt="Titanic">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Titanic</h3>
+                        <p class="movie-year">1997</p>
+                        <p class="movie-description">A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.</p>
+                    </div>
+                </div>
+                <div class="movie-card" data-movie-id="2">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/inception/300/450.jpg" alt="Inception">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Inception</h3>
+                        <p class="movie-year">2010</p>
+                        <p class="movie-description">A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.</p>
+                    </div>
+                </div>
+                <div class="movie-card" data-movie-id="3">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/wolf/300/450.jpg" alt="The Wolf of Wall Street">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Wolf of Wall Street</h3>
+                        <p class="movie-year">2013</p>
+                        <p class="movie-description">Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime and corruption.</p>
+                    </div>
+                </div>
+                <div class="movie-card" data-movie-id="4">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/revenant/300/450.jpg" alt="The Revenant">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Revenant</h3>
+                        <p class="movie-year">2015</p>
+                        <p class="movie-description">A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.</p>
+                    </div>
+                </div>
+                <div class="movie-card" data-movie-id="5">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/once-upon/300/450.jpg" alt="Once Upon a Time in Hollywood">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Once Upon a Time in Hollywood</h3>
+                        <p class="movie-year">2019</p>
+                        <p class="movie-description">A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age.</p>
+                    </div>
+                </div>
+                <div class="movie-card" data-movie-id="6">
+                    <div class="movie-image">
+                        <img src="https://picsum.photos/seed/dont-look/300/450.jpg" alt="Don't Look Up">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Don't Look Up</h3>
+                        <p class="movie-year">2021</p>
+                        <p class="movie-description">Two low-level astronomers must go on a giant media tour to warn mankind of an approaching comet that will destroy planet Earth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Foundation Section -->
+    <section class="foundation" id="foundation">
+        <div class="container">
+            <div class="mission-header">
+                <p class="mission-subtitle">Established in 1998</p>
+                <h2 class="section-title">Our Mission</h2>
+                <p class="mission-statement">
+                    Protecting Earth's last wild places and implementing solutions to create a harmonious relationship between humanity and the natural world
+                </p>
+            </div>
+
+            <div class="mission-pillars">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="pillar-title">Biodiversity Conservation</h3>
+                    <p class="pillar-description">
+                        Protecting endangered species and their habitats through innovative conservation strategies and community engagement.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Wildlife protection programs</li>
+                        <li><i class="fas fa-check"></i> Habitat restoration</li>
+                        <li><i class="fas fa-check"></i> Anti-poaching initiatives</li>
+                        <li><i class="fas fa-check"></i> Species monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="pillar-title">Ocean Preservation</h3>
+                    <p class="pillar-description">
+                        Safeguarding marine ecosystems and promoting sustainable ocean management practices worldwide.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Marine protected areas</li>
+                        <li><i class="fas fa-check"></i> Plastic pollution reduction</li>
+                        <li><i class="fas fa-check"></i> Sustainable fishing</li>
+                        <li><i class="fas fa-check"></i> Coral reef restoration</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3 class="pillar-title">Climate Action</h3>
+                    <p class="pillar-description">
+                        Accelerating the transition to renewable energy and supporting climate resilience projects globally.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Renewable energy investment</li>
+                        <li><i class="fas fa-check"></i> Carbon offset programs</li>
+                        <li><i class="fas fa-check"></i> Climate education</li>
+                        <li><i class="fas fa-check"></i> Policy advocacy</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="pillar-title">Forest Protection</h3>
+                    <p class="pillar-description">
+                        Preserving the world's forests and supporting indigenous communities in their role as forest guardians.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Reforestation projects</li>
+                        <li><i class="fas fa-check"></i> Indigenous land rights</li>
+                        <li><i class="fas fa-check"></i> Sustainable forestry</li>
+                        <li><i class="fas fa-check"></i> Fire prevention</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="pillar-title">Community Empowerment</h3>
+                    <p class="pillar-description">
+                        Supporting local communities in developing sustainable livelihoods and environmental stewardship programs.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Education initiatives</li>
+                        <li><i class="fas fa-check"></i> Sustainable agriculture</li>
+                        <li><i class="fas fa-check"></i> Clean water access</li>
+                        <li><i class="fas fa-check"></i> Economic development</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="pillar-title">Global Advocacy</h3>
+                    <p class="pillar-description">
+                        Raising awareness and driving policy change through strategic campaigns and high-impact media initiatives.
+                    </p>
+                    <ul class="pillar-features">
+                        <li><i class="fas fa-check"></i> Documentary production</li>
+                        <li><i class="fas fa-check"></i> Policy engagement</li>
+                        <li><i class="fas fa-check"></i> Public awareness</li>
+                        <li><i class="fas fa-check"></i> Strategic partnerships</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Impact Statistics -->
+            <div class="impact-section">
+                <h3 class="impact-title">Our Global Impact</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Million Dollars Raised</div>
+                        <div class="stat-description">For environmental causes</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="200">0</div>
+                        <div class="stat-label">Projects Funded</div>
+                        <div class="stat-description">Across 50+ countries</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Countries Reached</div>
+                        <div class="stat-description">Global impact</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label">Oceans Protected</div>
+                        <div class="stat-description">Marine conservation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bars -->
+            <div class="progress-section">
+                <h3 class="progress-title">Our Progress Towards Goals</h3>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Ocean Conservation</span>
+                        <span class="progress-percentage">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Forest Protection</span>
+                        <span class="progress-percentage">92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="92"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Climate Action</span>
+                        <span class="progress-percentage">78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="78"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Wildlife Protection</span>
+                        <span class="progress-percentage">88%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="88"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2 class="cta-title">Join Us in Protecting Our Planet</h2>
+                <p class="cta-description">
+                    Your support helps us continue our vital work in conservation, climate action, and environmental education around the world.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-cta btn-cta-primary" id="donateBtn">
+                        <i class="fas fa-heart"></i> Donate Now
+                    </a>
+                    <a href="#" class="btn-cta btn-cta-secondary" id="getInvolvedBtn">
+                        <i class="fas fa-hands-helping"></i> Get Involved
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Work Section -->
+    <section class="environment" id="environment">
+        <div class="container">
+            <h2 class="section-title">Environmental Advocacy</h2>
+            <div class="environment-content">
+                <div class="environment-text">
+                    <p>Leonardo DiCaprio has been a passionate advocate for environmental issues throughout his career. He uses his platform to raise awareness about climate change, biodiversity loss, and other critical environmental challenges.</p>
+                    <p>Through his foundation and personal activism, DiCaprio has supported numerous projects focused on protecting vulnerable ecosystems, implementing innovative solutions to climate change, and empowering communities to become environmental stewards.</p>
+                    <p>He has produced and narrated several documentaries on environmental topics, including "Before the Flood" and "Ice on Fire," which have reached millions of viewers worldwide.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">$100M+</div>
+                            <div class="stat-label">Funds Raised</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Projects Funded</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Countries Reached</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="environment-image">
+                    <img src="https://picsum.photos/seed/environment/600/400.jpg" alt="Environmental Work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <h2 class="section-title">Community Initiatives</h2>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-image">
+                        <img src="https://picsum.photos/seed/community1/400/300.jpg" alt="Community Initiative">
+                    </div>
+                    <div class="community-info">
+                        <h3 class="community-title">Ocean Conservation</h3>
+                        <p class="community-description">Supporting marine protected areas and sustainable fishing practices to preserve ocean biodiversity.</p>
+                        <a href="#" class="news-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <div class="community-image">
+                        <img src="https://picsum.photos/seed/community2/400/300.jpg" alt="Community Initiative">
+                    </div>
+                    <div class="community-info">
+                        <h3 class="community-title">Wildlife Protection</h3>
+                        <p class="community-description">Funding anti-poaching efforts and habitat restoration to protect endangered species worldwide.</p>
+                        <a href="#" class="news-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <div class="community-image">
+                        <img src="https://picsum.photos/seed/community3/400/300.jpg" alt="Community Initiative">
+                    </div>
+                    <div class="community-info">
+                        <h3 class="community-title">Climate Action</h3>
+                        <p class="community-description">Supporting renewable energy projects and climate resilience initiatives in vulnerable communities.</p>
+                        <a href="#" class="news-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+        <div class="container">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news1/400/300.jpg" alt="News Article">
+                    </div>
+                    <div class="news-info">
+                        <p class="news-date">June 15, 2023</p>
+                        <h3 class="news-title">Leonardo DiCaprio Foundation Announces $10M Grant for Amazon Rainforest</h3>
+                        <p class="news-description">The foundation has committed $10 million to support conservation efforts in the Amazon rainforest, working with local communities and indigenous groups.</p>
+                        <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news2/400/300.jpg" alt="News Article">
+                    </div>
+                    <div class="news-info">
+                        <p class="news-date">May 28, 2023</p>
+                        <h3 class="news-title">DiCaprio Speaks at UN Climate Summit</h3>
+                        <p class="news-description">Leonardo DiCaprio delivered a powerful speech at the United Nations Climate Summit, urging world leaders to take immediate action on climate change.</p>
+                        <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news3/400/300.jpg" alt="News Article">
+                    </div>
+                    <div class="news-info">
+                        <p class="news-date">May 10, 2023</p>
+                        <h3 class="news-title">New Documentary on Ocean Plastic Pollution Premieres</h3>
+                        <p class="news-description">DiCaprio's latest documentary explores the devastating impact of plastic pollution on marine ecosystems and highlights innovative solutions.</p>
+                        <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Contact Section -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+      <div class="contact-form">
+        <!-- Removed Formspree connection -->
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+
+          <!-- Optional success message -->
+          <div class="success-application" id="successContact" style="display:none;">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3 class="success-title">Message Sent!</h3>
+            <p class="success-text">Thank you for reaching out. We’ll get back to you shortly.</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-text">
+            <h3>Address</h3>
+            <p>Leonardo DiCaprio Foundation<br>1234 Hollywood Blvd<br>Los Angeles, CA 90028</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-text">
+            <h3>Email</h3>
+            <p>leonardodicapriohq@aol.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-text">
+            <h3>Phone</h3>
+            <p>+1 (469) 335-LEON</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Leonardo DiCaprio</h3>
+                    <p>Actor, Environmentalist & Philanthropist</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#movies">Movies</a></li>
+                        <li><a href="#foundation">Foundation</a></li>
+                        <li><a href="#environment">Environment</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">Annual Reports</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                <h3 class="footer-title">Newsletter</h3>
+                <p>Subscribe to get updates on Leonardo's work and environmental initiatives.</p>
+                <div class="newsletter">
+                    <!-- Removed external Formspree action -->
+                    <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" name="email" placeholder="Your email" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leonardo DiCaprio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+  <!-- Donation Modal -->
+<div class="donation-modal" id="donationModal">
+  <div class="donation-modal-content">
+    <div class="donation-header">
+      <h2 class="donation-title">Make a Donation</h2>
+      <p class="donation-subtitle">Your contribution helps protect our planet</p>
+      <button class="close-donation" id="closeDonation">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="donation-body">
+      <div class="donation-steps">
+        <div class="step active">
+          <div class="step-number">1</div>
+          <div class="step-label">Personal Info</div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-label">Donation</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-label">Confirmation</div>
+        </div>
+      </div>
+
+      <!-- Removed Formspree connection -->
+      <form id="donationForm">
+        <!-- Personal Information Section -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-user"></i> Personal Information
+          </h3>
+          <div class="donation-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="donorFirstName">First Name <span class="required">*</span></label>
+                <input type="text" id="donorFirstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="donorLastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="donorLastName" name="lastName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="donorEmail">Email Address <span class="required">*</span></label>
+              <input type="email" id="donorEmail" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="donorPhone">Phone Number</label>
+              <input type="tel" id="donorPhone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="donorCountry">Country <span class="required">*</span></label>
+              <select id="donorCountry" name="country" required>
+                <option value="">Select Country</option>
+                <option value="US">United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="JP">Japan</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donation Amount Section -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-dollar-sign"></i> Donation Amount
+          </h3>
+          <div class="donation-form">
+            <div class="amount-options">
+              <button type="button" class="amount-btn" data-amount="25">$25</button>
+              <button type="button" class="amount-btn" data-amount="50">$50</button>
+              <button type="button" class="amount-btn" data-amount="100">$100</button>
+              <button type="button" class="amount-btn" data-amount="250">$250</button>
+              <button type="button" class="amount-btn" data-amount="500">$500</button>
+              <button type="button" class="amount-btn" data-amount="1000">$1000</button>
+            </div>
+            <div class="form-group">
+              <label for="customAmount">Custom Amount (USD)</label>
+              <input type="number" id="customAmount" name="customAmount" min="1" placeholder="Enter amount" class="custom-amount">
+            </div>
+            <input type="hidden" id="donationAmount" name="donationAmount" required>
+          </div>
+        </div>
+
+        <!-- Wallet Address Section -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-wallet"></i> Cryptocurrency Donation
+          </h3>
+          <div class="wallet-section">
+            <div class="wallet-label">
+              <i class="fab fa-bitcoin"></i> Bitcoin (BTC) Wallet Address
+            </div>
+            <div class="wallet-address-container">
+              <div class="wallet-address" id="btcAddress">bc1qtedepv54swxfmy5ghggkdtdjr8892shm6qwygh</div>
+              <button type="button" class="copy-btn" id="copyBtc"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="qr-code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qtedepv54swxfmy5ghggkdtdjr8892shm6qwygh" alt="Bitcoin QR Code">
+            </div>
+          </div>
+
+          <div class="wallet-section" style="margin-top:1.5rem;">
+            <div class="wallet-label">
+              <i class="fab fa-ethereum"></i> Ethereum (ETH) Wallet Address
+            </div>
+            <div class="wallet-address-container">
+              <div class="wallet-address" id="ethAddress">0x086e273A55F1CB45150e7979Dd9E5C5cb782f92b</div>
+              <button type="button" class="copy-btn" id="copyEth"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="qr-code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x086e273A55F1CB45150e7979Dd9E5C5cb782f92b" alt="Ethereum QR Code">
+            </div>
+          </div>
+        </div>
+
+        <!-- Proof of Donation Section -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-file-upload"></i> Upload Proof of Donation
+          </h3>
+          <div class="donation-form">
+            <div class="file-upload" id="fileUploadContainer">
+              <input type="file" id="proofFile" accept="image/*,.pdf" required>
+              <label for="proofFile" class="file-upload-label">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Click to upload or drag and drop</span>
+                <small>PNG, JPG, PDF up to 10MB</small>
+              </label>
+            </div>
+            <div class="file-info" id="fileInfo" style="display:none;">
+              <span>Selected file: <span class="file-name" id="fileName"></span></span>
+            </div>
+
+            <div class="upload-progress" id="uploadProgress">
+              <div class="progress-bar-container">
+                <div class="upload-progress-bar" id="uploadProgressBar"></div>
+              </div>
+              <div class="upload-status" id="uploadStatus">Uploading file...</div>
+            </div>
+
+            <div class="file-link-container" id="fileLinkContainer">
+              <div class="file-link-label"><i class="fas fa-link"></i> Download Link</div>
+              <div class="file-link" id="fileLink"></div>
+              <div class="file-link-actions">
+                <button type="button" class="file-link-btn copy" id="copyFileLink"><i class="fas fa-copy"></i> Copy Link</button>
+                <button type="button" class="file-link-btn download" id="downloadFile"><i class="fas fa-download"></i> Download</button>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:1rem;">
+              <label for="transactionHash">Transaction Hash (Optional)</label>
+              <input type="text" id="transactionHash" name="transactionHash" placeholder="Enter transaction hash if available">
+            </div>
+          </div>
+        </div>
+
+        <!-- Message Section -->
+        <div class="form-section">
+          <h3 class="form-section-title"><i class="fas fa-comment"></i> Message (Optional)</h3>
+          <div class="donation-form">
+            <div class="form-group">
+              <label for="donorMessage">Leave a message or dedicate your donation</label>
+              <textarea id="donorMessage" name="message" rows="3" placeholder="Your message here..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" id="submitDonation">
+          <i class="fas fa-paper-plane"></i> <span>Submit Donation</span>
+        </button>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+          <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+          <h3 class="success-title">Thank You for Your Donation!</h3>
+          <p class="success-text">We have received your donation details and will verify your transaction shortly. You will receive a confirmation email soon.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+   <!-- Job Application Modal -->
+<div class="job-modal" id="jobModal">
+  <div class="job-modal-content">
+    <div class="job-header">
+      <h2 class="job-title">Join Our Team</h2>
+      <p class="job-subtitle">Help us make a difference for our planet</p>
+      <button class="close-job" id="closeJob">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="job-body">
+      <div class="job-tabs">
+        <button class="job-tab active" data-tab="jobs">Available Positions</button>
+        <button class="job-tab" data-tab="application">Application Form</button>
+      </div>
+
+      <!-- Jobs Tab -->
+      <div class="tab-content active" id="jobs-tab">
+        <div class="job-list">
+          <div class="job-item" data-job="marine-biologist">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Marine Biologist</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Ocean Conservation Department</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Miami, FL / Remote</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="climate-scientist">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Climate Scientist</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Climate Research Department</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>San Francisco, CA / Remote</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="wildlife-photographer">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Wildlife Photographer</h3>
+              <span class="job-item-type">Contract</span>
+            </div>
+            <p class="job-item-department">Media & Communications</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Travel Required</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="conservation-officer">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Conservation Officer</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Field Operations</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Multiple Locations</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="environmental-educator">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Environmental Educator</h3>
+              <span class="job-item-type">Part-time</span>
+            </div>
+            <p class="job-item-department">Education & Outreach</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>New York, NY / Remote</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="policy-advocate">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Environmental Policy Advocate</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Policy & Advocacy</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Washington, DC</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="research-analyst">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Environmental Research Analyst</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Research Department</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Boston, MA / Remote</span>
+            </div>
+          </div>
+
+          <div class="job-item" data-job="fundraising-manager">
+            <div class="job-item-header">
+              <h3 class="job-item-title">Fundraising Manager</h3>
+              <span class="job-item-type">Full-time</span>
+            </div>
+            <p class="job-item-department">Development Department</p>
+            <div class="job-item-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Los Angeles, CA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Application Tab -->
+      <div class="tab-content" id="application-tab">
+        <!-- Removed external Formspree connection -->
+        <form id="jobApplicationForm">
+          
+          <!-- Personal Information -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h3>
+            <div class="application-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name <span class="required">*</span></label>
+                  <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name <span class="required">*</span></label>
+                  <input type="text" id="lastName" name="lastName" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="country">Country <span class="required">*</span></label>
+                  <select id="country" name="country" required>
+                    <option value="">Select Country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="CA">Canada</option>
+                    <option value="AU">Australia</option>
+                    <option value="DE">Germany</option>
+                    <option value="FR">France</option>
+                    <option value="JP">Japan</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="position">Position Applied For <span class="required">*</span></label>
+                  <select id="position" name="position" required>
+                    <option value="">Select Position</option>
+                    <option value="marine-biologist">Marine Biologist</option>
+                    <option value="climate-scientist">Climate Scientist</option>
+                    <option value="wildlife-photographer">Wildlife Photographer</option>
+                    <option value="conservation-officer">Conservation Officer</option>
+                    <option value="environmental-educator">Environmental Educator</option>
+                    <option value="policy-advocate">Environmental Policy Advocate</option>
+                    <option value="research-analyst">Environmental Research Analyst</option>
+                    <option value="fundraising-manager">Fundraising Manager</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Information -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-briefcase"></i> Professional Information</h3>
+            <div class="application-form">
+              <div class="form-group">
+                <label for="experience">Years of Experience <span class="required">*</span></label>
+                <select id="experience" name="experience" required>
+                  <option value="">Select Experience</option>
+                  <option value="0-2">0-2 years</option>
+                  <option value="3-5">3-5 years</option>
+                  <option value="6-10">6-10 years</option>
+                  <option value="10+">10+ years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="education">Highest Education <span class="required">*</span></label>
+                <select id="education" name="education" required>
+                  <option value="">Select Education</option>
+                  <option value="high-school">High School</option>
+                  <option value="bachelor">Bachelor's Degree</option>
+                  <option value="master">Master's Degree</option>
+                  <option value="phd">PhD</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="linkedin">LinkedIn Profile (Optional)</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+              </div>
+              <div class="form-group">
+                <label for="portfolio">Portfolio/Website (Optional)</label>
+                <input type="url" id="portfolio" name="portfolio" placeholder="https://yourwebsite.com">
+              </div>
+            </div>
+          </div>
+
+          <!-- KYC Section -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-shield-alt"></i> KYC Verification (American Standards)</h3>
+            <div class="application-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ssn">Social Security Number <span class="required">*</span></label>
+                  <input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" pattern="\d{3}-\d{2}-\d{4}" required>
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth <span class="required">*</span></label>
+                  <input type="date" id="dob" name="dob" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Street Address <span class="required">*</span></label>
+                <input type="text" id="address" name="address" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City <span class="required">*</span></label>
+                  <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                  <label for="state">State <span class="required">*</span></label>
+                  <input type="text" id="state" name="state" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="zipCode">ZIP Code <span class="required">*</span></label>
+                  <input type="text" id="zipCode" name="zipCode" pattern="\d{5}" required>
+                </div>
+                <div class="form-group">
+                  <label for="citizenship">Citizenship <span class="required">*</span></label>
+                  <select id="citizenship" name="citizenship" required>
+                    <option value="">Select Citizenship</option>
+                    <option value="us-citizen">US Citizen</option>
+                    <option value="permanent-resident">Permanent Resident</option>
+                    <option value="work-visa">Work Visa Holder</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Upload -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-file-upload"></i> Required Documents</h3>
+            <div class="application-form">
+              <div class="kyc-grid">
+
+                <!-- ID Upload -->
+                <div class="document-upload" id="idUpload">
+                  <input type="file" id="idDocument" class="file-input" accept="image/*,.pdf" required>
+                  <i class="fas fa-id-card"></i>
+                  <p>Government ID</p>
+                  <small>Driver's License or Passport</small>
+
+                  <div class="upload-progress" id="idUploadProgress">
+                    <div class="progress-bar-container">
+                      <div class="upload-progress-bar" id="idUploadProgressBar"></div>
+                    </div>
+                    <div class="upload-status">Uploading file...</div>
+                  </div>
+
+                  <div class="file-link-container" id="idFileLinkContainer">
+                    <div class="file-link-label"><i class="fas fa-link"></i> Download Link</div>
+                    <div class="file-link" id="idFileLink"></div>
+                    <div class="file-link-actions">
+                      <button type="button" class="file-link-btn copy" id="copyIdFileLink"><i class="fas fa-copy"></i> Copy Link</button>
+                      <button type="button" class="file-link-btn download" id="downloadIdFile"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SSN Upload -->
+                <div class="document-upload" id="ssnUpload">
+                  <input type="file" id="ssnDocument" class="file-input" accept="image/*,.pdf" required>
+                  <i class="fas fa-file-alt"></i>
+                  <p>SSN Card</p>
+                  <small>Social Security Card</small>
+
+                  <div class="upload-progress" id="ssnUploadProgress">
+                    <div class="progress-bar-container">
+                      <div class="upload-progress-bar" id="ssnUploadProgressBar"></div>
+                    </div>
+                    <div class="upload-status">Uploading file...</div>
+                  </div>
+
+                  <div class="file-link-container" id="ssnFileLinkContainer">
+                    <div class="file-link-label"><i class="fas fa-link"></i> Download Link</div>
+                    <div class="file-link" id="ssnFileLink"></div>
+                    <div class="file-link-actions">
+                      <button type="button" class="file-link-btn copy" id="copySsnFileLink"><i class="fas fa-copy"></i> Copy Link</button>
+                      <button type="button" class="file-link-btn download" id="downloadSsnFile"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CV Upload -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-file-alt"></i> Resume/CV</h3>
+            <div class="cv-upload" id="cvUpload">
+              <input type="file" id="cvFile" class="file-input" accept=".pdf,.doc,.docx" required>
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Upload your Resume/CV</p>
+              <small>PDF, DOC, DOCX (Max 5MB)</small>
+              <div class="cv-info" id="cvInfo">
+                <p>Selected file: <strong id="cvFileName"></strong></p>
+              </div>
+
+              <div class="upload-progress" id="cvUploadProgress">
+                <div class="progress-bar-container">
+                  <div class="upload-progress-bar" id="cvUploadProgressBar"></div>
+                </div>
+                <div class="upload-status">Uploading file...</div>
+              </div>
+
+              <div class="file-link-container" id="cvFileLinkContainer">
+                <div class="file-link-label"><i class="fas fa-link"></i> Download Link</div>
+                <div class="file-link" id="cvFileLink"></div>
+                <div class="file-link-actions">
+                  <button type="button" class="file-link-btn copy" id="copyCvFileLink"><i class="fas fa-copy"></i> Copy Link</button>
+                  <button type="button" class="file-link-btn download" id="downloadCvFile"><i class="fas fa-download"></i> Download</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cover Letter -->
+          <div class="form-section">
+            <h3 class="form-section-title"><i class="fas fa-comment"></i> Cover Letter</h3>
+            <div class="application-form">
+              <div class="form-group">
+                <label for="coverLetter">Why do you want to join our team? <span class="required">*</span></label>
+                <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us about your passion for environmental conservation and why you're interested in this position..." required></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-application-btn" id="submitApplication">
+            <i class="fas fa-paper-plane"></i>
+            <span>Submit Application</span>
+          </button>
+
+          <!-- Success Message -->
+          <div class="success-application" id="successApplication">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3 class="success-title">Application Submitted Successfully!</h3>
+            <p class="success-text">Thank you for your interest in joining our team. We will review your application and contact you within 5–7 business days.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Movie Modal -->
+    <div class="modal" id="movieModal">
+        <div class="modal-content">
+            <div class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <div class="modal-meta">
+                        <span id="modalYear"></span>
+                        <span>|</span>
+                        <span id="modalRating"></span>
+                        <span>|</span>
+                        <span id="modalDuration"></span>
+                    </div>
+                    <p class="modal-description" id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="module">
+/* ---------- Supabase Initialization ---------- */
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+const SUPABASE_URL = 'https://nnuvrnztrfmipnwbnbzn.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udXZybnp0cmZtaXBud2JuYnpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNTY5NDUsImV4cCI6MjA3NzkzMjk0NX0.WCPq3ZeUu3fiEEEbWkAIuQfz6Ka428zud7qMIc4hHds';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+/* ---------- File hosting providers (primary + fallbacks) ---------- */
+const FILE_HOST_API   = 'https://file.io/?expires=1w';
+const FILE_HOST_PROXY = 'https://corsproxy.io/?';
+const TMPFILES_API    = 'https://tmpfiles.org/api/v1/upload';
+
+/* ---------- Save to Supabase (and keep local backup) ---------- */
+async function saveSubmissionToDatabase(submissionData) {
+  try {
+    let table = '';
+    switch (submissionData.type) {
+      case 'donation': table = 'donations'; break;
+      case 'application': table = 'applications'; break;
+      case 'contact': table = 'contacts'; break;
+      case 'newsletter': table = 'newsletter'; break;
+      default: return console.warn('Unknown submission type:', submissionData.type);
+    }
+    const { error } = await supabase.from(table).insert([submissionData.data]);
+    if (error) throw error;
+    console.log(`✅ Saved submission to Supabase table: ${table}`);
+  } catch (err) {
+    console.error('❌ Supabase save error:', err.message);
+  }
+}
+
+function saveSubmissionToLocalStorage(payload) {
+  const key = 'formSubmissions';
+  const existing = JSON.parse(localStorage.getItem(key) || '[]');
+  existing.push(payload);
+  localStorage.setItem(key, JSON.stringify(existing));
+  saveSubmissionToDatabase(payload); // also send to Supabase
+}
+
+/* ============================================================
+   FILE UPLOADS (with graceful fallbacks)
+   ============================================================ */
+async function uploadFile(file, progressEl, statusEl) {
+  const setStatus = (msg, type = '') => {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.classList.remove('error', 'success');
+    if (type) statusEl.classList.add(type);
+  };
+  const setProgress = (pct) => {
+    if (!progressEl) return;
+    const bar = progressEl.querySelector('.upload-progress-bar');
+    if (bar) bar.style.width = pct + '%';
+  };
+
+  progressEl && progressEl.classList.add('show');
+  setStatus('Uploading file...');
+
+  let progress = 0;
+  const tick = setInterval(() => {
+    progress = Math.min(progress + Math.random() * 25, 90);
+    setProgress(progress);
+  }, 200);
+
+  const succeed = (link) => {
+    clearInterval(tick);
+    setProgress(100);
+    setStatus('Upload complete!', 'success');
+    setTimeout(() => progressEl && progressEl.classList.remove('show'), 800);
+    return { link, success: true };
+  };
+
+  // #1 file.io
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await fetch(FILE_HOST_API, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+    const raw = await res.text();
+    if (!res.ok) throw new Error(`file.io HTTP ${res.status}: ${raw.slice(0,200)}`);
+    const data = JSON.parse(raw);
+    if (!data.success || !data.link) throw new Error(`file.io error: ${data.message || 'no link'}`);
+    return succeed(data.link);
+  } catch (err1) {
+    console.warn('file.io direct failed:', err1);
+    setStatus('Retrying via proxy...', 'error');
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const proxyUrl = FILE_HOST_PROXY + encodeURIComponent(FILE_HOST_API);
+      const res = await fetch(proxyUrl, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+      const raw = await res.text();
+      if (!res.ok) throw new Error(`proxy(file.io) HTTP ${res.status}: ${raw.slice(0,200)}`);
+      const data = JSON.parse(raw);
+      if (!data.success || !data.link) throw new Error(`proxy(file.io) error: ${data.message || 'no link'}`);
+      return succeed(data.link);
+    } catch (err1b) {
+      console.warn('file.io proxy failed:', err1b);
+    }
+  }
+
+  // #2 tmpfiles.org
+  try {
+    setStatus('Switching to fallback server…', 'error');
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await fetch(TMPFILES_API, { method: 'POST', body: fd });
+    const data = await res.json();
+    if (!res.ok) throw new Error(`tmpfiles HTTP ${res.status}`);
+    if (data && data.status === 'success' && data.data?.url) {
+      return succeed(data.data.url);
+    }
+  } catch (err2) {
+    console.warn('tmpfiles fallback failed:', err2);
+  }
+
+  // #3 Local data URL
+  try {
+    if (file.size < 5 * 1024 * 1024) {
+      setStatus('Processing file locally…');
+      clearInterval(tick);
+      return await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setProgress(100);
+          setStatus('File processed locally', 'success');
+          setTimeout(() => progressEl && progressEl.classList.remove('show'), 800);
+          const dataUrl = e.target.result;
+          resolve({
+            link: `data:${file.type};base64,${String(dataUrl).split(',')[1]}`,
+            success: true,
+            isDataUrl: true
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  } catch (err3) {
+    console.warn('Local fallback failed:', err3);
+  }
+
+  clearInterval(tick);
+  setStatus('Failed to upload file.', 'error');
+  throw new Error('All upload providers failed');
+}
+
+/* ---------- Link/Copy/Download helpers ---------- */
+function showFileLink(linkEl, containerEl, link, isDataUrl = false) {
+  if (linkEl) {
+    linkEl.textContent = isDataUrl ? '[File stored locally - click download to view]' : link;
+    if (isDataUrl) linkEl.style.fontSize = '0.8rem';
+  }
+  containerEl && containerEl.classList.add('show');
+}
+function copyToClipboard(text, buttonEl) {
+  navigator.clipboard.writeText(text).then(() => {
+    const original = buttonEl.innerHTML;
+    buttonEl.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    buttonEl.classList.add('copied');
+    setTimeout(() => { buttonEl.innerHTML = original; buttonEl.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    const original = buttonEl.innerHTML;
+    buttonEl.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    buttonEl.classList.add('copied');
+    setTimeout(() => { buttonEl.innerHTML = original; buttonEl.classList.remove('copied'); }, 2000);
+  });
+}
+function downloadDataUrl(dataUrl, filename) {
+  const a = document.createElement('a');
+  a.href = dataUrl; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+/* ============================================================
+   MOBILE MENU / NAV / SCROLL
+   ============================================================ */
+const menuToggle  = document.getElementById('menuToggle');
+const mobileMenu  = document.getElementById('mobileMenu');
+const closeMenu   = document.getElementById('closeMenu');
+const overlay     = document.getElementById('overlay');
+
+function openMobileMenu() {
+  if (!mobileMenu || !overlay) return;
+  mobileMenu.classList.add('active'); overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  if (!mobileMenu || !overlay) return;
+  mobileMenu.classList.remove('active'); overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+menuToggle && menuToggle.addEventListener('click', openMobileMenu);
+closeMenu  && closeMenu.addEventListener('click', closeMobileMenu);
+overlay    && overlay.addEventListener('click', closeMobileMenu);
+document.querySelectorAll('.mobile-nav-links a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+/* Smooth scrolling (header offset) */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const header = document.getElementById('header');
+    const headerHeight = header ? header.offsetHeight : 0;
+    const targetTop = target.offsetTop - headerHeight;
+    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+  });
+});
+
+/* Header scroll effects + scrollTop button */
+let lastScrollTop = 0;
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  const st = window.pageYOffset || document.documentElement.scrollTop;
+  if (header) {
+    header.style.boxShadow = (st > 100) ? '0 2px 20px rgba(0,0,0,0.1)' : '0 2px 10px rgba(0,0,0,0.1)';
+    header.style.transform = (st > lastScrollTop && st > 100) ? 'translateY(-100%)' : 'translateY(0)';
+  }
+  lastScrollTop = st;
+
+  const scrollTopBtn = document.getElementById('scrollTop');
+  scrollTopBtn && (st > 500 ? scrollTopBtn.classList.add('active') : scrollTopBtn.classList.remove('active'));
+});
+const scrollTopBtn = document.getElementById('scrollTop');
+scrollTopBtn && scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ============================================================
+   DONATION MODAL + FORM  (stores to localStorage)
+   ============================================================ */
+const donationModal = document.getElementById('donationModal');
+const donateBtn     = document.getElementById('donateBtn');
+const closeDonation = document.getElementById('closeDonation');
+
+donateBtn && donateBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  donationModal && donationModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+closeDonation && closeDonation.addEventListener('click', () => {
+  donationModal && donationModal.classList.remove('active');
+  document.body.style.overflow = '';
+});
+donationModal && donationModal.addEventListener('click', (e) => {
+  if (e.target === donationModal) {
+    donationModal.classList.remove('active'); document.body.style.overflow = '';
+  }
+});
+
+/* Amount selection */
+const amountButtons       = document.querySelectorAll('.amount-btn');
+const customAmountInput   = document.getElementById('customAmount');
+const donationAmountInput = document.getElementById('donationAmount');
+
+amountButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    amountButtons.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    customAmountInput && (customAmountInput.value = '');
+    donationAmountInput && (donationAmountInput.value = btn.getAttribute('data-amount'));
+  });
+});
+customAmountInput && customAmountInput.addEventListener('input', () => {
+  amountButtons.forEach(b => b.classList.remove('selected'));
+  donationAmountInput && (donationAmountInput.value = customAmountInput.value);
+});
+
+/* Wallet copy */
+const copyBtc    = document.getElementById('copyBtc');
+const copyEth    = document.getElementById('copyEth');
+const btcAddress = document.getElementById('btcAddress');
+const ethAddress = document.getElementById('ethAddress');
+copyBtc && copyBtc.addEventListener('click', () => copyToClipboard(btcAddress ? btcAddress.textContent : '', copyBtc));
+copyEth && copyEth.addEventListener('click', () => copyToClipboard(ethAddress ? ethAddress.textContent : '', copyEth));
+
+/* Donation proof upload */
+const fileInput          = document.getElementById('proofFile');
+const fileUploadContainer= document.getElementById('fileUploadContainer');
+const fileInfo           = document.getElementById('fileInfo');
+const fileName           = document.getElementById('fileName');
+const uploadProgress     = document.getElementById('uploadProgress');
+const uploadStatus       = document.getElementById('uploadStatus');
+const fileLinkContainer  = document.getElementById('fileLinkContainer');
+const fileLink           = document.getElementById('fileLink');
+const copyFileLink       = document.getElementById('copyFileLink');
+const downloadFile       = document.getElementById('downloadFile');
+
+let donationFileUrl = '';
+let donationFileIsDataUrl = false;
+
+fileInput && fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    fileName && (fileName.textContent = file.name);
+    fileInfo && (fileInfo.style.display = 'block');
+    fileUploadContainer && fileUploadContainer.classList.add('has-file');
+    try {
+      const res = await uploadFile(file, uploadProgress, uploadStatus);
+      donationFileUrl = res.link;
+      donationFileIsDataUrl = !!res.isDataUrl;
+      showFileLink(fileLink, fileLinkContainer, donationFileUrl, donationFileIsDataUrl);
+      const donationForm = document.getElementById('donationForm');
+      if (donationForm && !document.getElementById('proofFileLink')) {
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden'; hidden.id = 'proofFileLink'; hidden.name = 'proofFileLink';
+        donationForm.appendChild(hidden);
+      }
+      const hidden = document.getElementById('proofFileLink');
+      hidden && (hidden.value = donationFileUrl);
+    } catch (err) { console.error('Error uploading file:', err); }
+  } else {
+    fileInfo && (fileInfo.style.display = 'none');
+    fileUploadContainer && fileUploadContainer.classList.remove('has-file');
+    fileLinkContainer && fileLinkContainer.classList.remove('show');
+  }
+});
+copyFileLink && copyFileLink.addEventListener('click', () => donationFileUrl && copyToClipboard(donationFileUrl, copyFileLink));
+downloadFile && downloadFile.addEventListener('click', () => {
+  if (!donationFileUrl) return;
+  donationFileIsDataUrl ? downloadDataUrl(donationFileUrl, fileName ? fileName.textContent : 'file') : window.open(donationFileUrl, '_blank');
+});
+
+/* Drag & drop proof */
+if (fileUploadContainer) {
+  ['dragenter','dragover','dragleave','drop'].forEach(ev =>
+    fileUploadContainer.addEventListener(ev, (e) => { e.preventDefault(); e.stopPropagation(); }, false)
+  );
+  ['dragenter','dragover'].forEach(ev =>
+    fileUploadContainer.addEventListener(ev, () => fileUploadContainer.classList.add('drag-over'), false)
+  );
+  ['dragleave','drop'].forEach(ev =>
+    fileUploadContainer.addEventListener(ev, () => fileUploadContainer.classList.remove('drag-over'), false)
+  );
+  fileUploadContainer.addEventListener('drop', async (e) => {
+    const files = e.dataTransfer.files;
+    if (files.length && fileInput) {
+      fileInput.files = files;
+      fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  });
+}
+
+/* Donation submit -> LocalStorage */
+const donationForm   = document.getElementById('donationForm');
+const submitBtn      = document.getElementById('submitDonation');
+const successMessage = document.getElementById('successMessage');
+
+donationForm && donationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if (!donationAmountInput || !donationAmountInput.value || donationAmountInput.value <= 0) {
+    alert('Please select or enter a donation amount'); return;
+  }
+  if (!document.getElementById('proofFileLink')?.value && !fileInput?.files?.[0]) {
+    alert('Please upload proof of donation'); return;
+  }
+
+  // prevent binary field from being serialized
+  fileInput && fileInput.removeAttribute('name');
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.innerHTML = '<div class="spinner"></div> Processing...';
+  }
+
+  const fd = new FormData(donationForm);
+  const payload = {
+    id: Date.now().toString(),
+    type: 'donation',
+    date: new Date().toISOString(),
+    replied: false,
+    data: {}
+  };
+  for (const [k, v] of fd.entries()) payload.data[k] = v;
+  payload.data.submissionDate = new Date().toISOString();
+  payload.data.donationType = 'cryptocurrency';
+
+  try {
+    saveSubmissionToLocalStorage(payload);
+    successMessage && successMessage.classList.add('show');
+    donationForm.reset();
+    fileUploadContainer && fileUploadContainer.classList.remove('has-file');
+    fileInfo && (fileInfo.style.display = 'none');
+    fileLinkContainer && fileLinkContainer.classList.remove('show');
+    amountButtons.forEach(b => b.classList.remove('selected'));
+    setTimeout(() => {
+      successMessage && successMessage.classList.remove('show');
+      donationModal && donationModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }, 5000);
+  } catch (err) {
+    console.error('Donation submission error:', err);
+    alert('There was an error submitting your donation: ' + err.message);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Donation';
+    }
+  }
+});
+
+/* ============================================================
+   JOB APPLICATION MODAL / TABS / FORM  (stores to localStorage)
+   ============================================================ */
+const jobModal       = document.getElementById('jobModal');
+const getInvolvedBtn = document.getElementById('getInvolvedBtn');
+const closeJob       = document.getElementById('closeJob');
+
+getInvolvedBtn && getInvolvedBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  jobModal && jobModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+closeJob && closeJob.addEventListener('click', () => {
+  jobModal && jobModal.classList.remove('active');
+  document.body.style.overflow = '';
+});
+jobModal && jobModal.addEventListener('click', (e) => {
+  if (e.target === jobModal) {
+    jobModal.classList.remove('active'); document.body.style.overflow = '';
+  }
+});
+
+/* Tabs inside job modal */
+const jobTabs     = document.querySelectorAll('.job-tab');
+const tabContents = document.querySelectorAll('.tab-content');
+jobTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.getAttribute('data-tab');
+    jobTabs.forEach(t => t.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    const el = document.getElementById(`${target}-tab`);
+    if (el) { el.classList.add('active'); el.style.display = 'block'; }
+  });
+});
+
+/* Clicking a job item preselects the position and opens Application tab */
+const jobItems       = document.querySelectorAll('.job-item');
+const positionSelect = document.getElementById('position');
+jobItems.forEach(item => {
+  item.addEventListener('click', () => {
+    jobItems.forEach(j => j.classList.remove('selected'));
+    item.classList.add('selected');
+    const value = item.getAttribute('data-job');
+    positionSelect && (positionSelect.value = value);
+    const appTabBtn = document.querySelector('.job-tab[data-tab="application"]');
+    appTabBtn && appTabBtn.click();
+    const form = document.getElementById('jobApplicationForm');
+    form && form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* Allow outside "Available Positions" triggers to jump into app form */
+document.addEventListener('DOMContentLoaded', () => {
+  const availableBtn = document.querySelector('.btn.available-positions, a[href="#available-positions"], [data-available]');
+  const appTabBtn    = document.querySelector('.job-tab[data-tab="application"]');
+  if (availableBtn && jobModal) {
+    availableBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      jobModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      appTabBtn && appTabBtn.click();
+      const form = document.getElementById('jobApplicationForm');
+      form && form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+});
+
+/* File upload helpers (ID / SSN) */
+function setupFileUpload(uploadId, inputId, progressId, progressBarId, linkContainerId, linkId, copyLinkId, downloadLinkId) {
+  const uploadEl   = document.getElementById(uploadId);
+  const inputEl    = document.getElementById(inputId);
+  const progressEl = document.getElementById(progressId);
+  const linkContEl = document.getElementById(linkContainerId);
+  const linkEl     = document.getElementById(linkId);
+  const copyEl     = document.getElementById(copyLinkId);
+  const dlEl       = document.getElementById(downloadLinkId);
+  if (!uploadEl || !inputEl) return;
+
+  let fileUrl = ''; let isDataUrl = false;
+
+  uploadEl.addEventListener('click', () => inputEl.click());
+  inputEl.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    uploadEl.classList.add('has-file');
+    const nameP = uploadEl.querySelector('p');
+    nameP && (nameP.textContent = file.name);
+    try {
+      const res = await uploadFile(file, progressEl, progressEl ? progressEl.querySelector('.upload-status') : null);
+      fileUrl = res.link; isDataUrl = !!res.isDataUrl;
+      showFileLink(linkEl, linkContEl, fileUrl, isDataUrl);
+
+      const form = document.getElementById('jobApplicationForm');
+      const hiddenId = inputId + 'Link';
+      if (form && !document.getElementById(hiddenId)) {
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden'; hidden.id = hiddenId; hidden.name = hiddenId;
+        form.appendChild(hidden);
+      }
+      const hidden = document.getElementById(hiddenId);
+      hidden && (hidden.value = fileUrl);
+    } catch (err) { console.error('Upload error:', err); }
+  });
+
+  copyEl && copyEl.addEventListener('click', () => fileUrl && copyToClipboard(fileUrl, copyEl));
+  dlEl && dlEl.addEventListener('click', () => {
+    if (!fileUrl) return;
+    if (isDataUrl) {
+      const name = uploadEl.querySelector('p')?.textContent || 'file';
+      downloadDataUrl(fileUrl, name);
+    } else {
+      window.open(fileUrl, '_blank');
+    }
+  });
+}
+setupFileUpload('idUpload','idDocument','idUploadProgress','idUploadProgressBar','idFileLinkContainer','idFileLink','copyIdFileLink','downloadIdFile');
+setupFileUpload('ssnUpload','ssnDocument','ssnUploadProgress','ssnUploadProgressBar','ssnFileLinkContainer','ssnFileLink','copySsnFileLink','downloadSsnFile');
+
+/* CV upload */
+const cvUpload            = document.getElementById('cvUpload');
+const cvFile              = document.getElementById('cvFile');
+const cvInfo              = document.getElementById('cvInfo');
+const cvFileName          = document.getElementById('cvFileName');
+const cvUploadProgress    = document.getElementById('cvUploadProgress');
+const cvFileLinkContainer = document.getElementById('cvFileLinkContainer');
+const cvFileLink          = document.getElementById('cvFileLink');
+const copyCvFileLink      = document.getElementById('copyCvFileLink');
+const downloadCvFile      = document.getElementById('downloadCvFile');
+
+let cvFileUrl = ''; let cvFileIsDataUrl = false;
+
+cvUpload && cvUpload.addEventListener('click', () => cvFile && cvFile.click());
+cvFile && cvFile.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  cvUpload && cvUpload.classList.add('has-file');
+  cvFileName && (cvFileName.textContent = file.name);
+  cvInfo && cvInfo.classList.add('show');
+  try {
+    const res = await uploadFile(file, cvUploadProgress, cvUploadProgress ? cvUploadProgress.querySelector('.upload-status') : null);
+    cvFileUrl = res.link; cvFileIsDataUrl = !!res.isDataUrl;
+    showFileLink(cvFileLink, cvFileLinkContainer, cvFileUrl, cvFileIsDataUrl);
+    const form = document.getElementById('jobApplicationForm');
+    if (form && !document.getElementById('cvFileLink')) {
+      const hidden = document.createElement('input');
+      hidden.type = 'hidden'; hidden.id = 'cvFileLink'; hidden.name = 'cvFileLink';
+      form.appendChild(hidden);
+    }
+    const hidden = document.getElementById('cvFileLink');
+    hidden && (hidden.value = cvFileUrl);
+  } catch (err) { console.error('CV upload error:', err); }
+});
+copyCvFileLink && copyCvFileLink.addEventListener('click', () => cvFileUrl && copyToClipboard(cvFileUrl, copyCvFileLink));
+downloadCvFile && downloadCvFile.addEventListener('click', () => {
+  if (!cvFileUrl) return;
+  cvFileIsDataUrl ? downloadDataUrl(cvFileUrl, cvFileName ? cvFileName.textContent : 'cv') : window.open(cvFileUrl, '_blank');
+});
+
+/* Job application submit -> LocalStorage */
+const jobApplicationForm  = document.getElementById('jobApplicationForm');
+const submitApplicationBtn= document.getElementById('submitApplication');
+const successApplication  = document.getElementById('successApplication');
+
+jobApplicationForm && jobApplicationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // ensure binary inputs not serialized as blobs
+  document.getElementById('idDocument')?.removeAttribute('name');
+  document.getElementById('ssnDocument')?.removeAttribute('name');
+  document.getElementById('cvFile')?.removeAttribute('name');
+
+  if (submitApplicationBtn) {
+    submitApplicationBtn.disabled = true;
+    submitApplicationBtn.innerHTML = '<div class="spinner"></div> Processing...';
+  }
+
+  const fd = new FormData(jobApplicationForm);
+  const payload = {
+    id: Date.now().toString(),
+    type: 'application',
+    date: new Date().toISOString(),
+    replied: false,
+    data: {}
+  };
+  for (const [k, v] of fd.entries()) payload.data[k] = v;
+  payload.data.submissionDate = new Date().toISOString();
+  payload.data.applicationType = 'job-application';
+
+  try {
+    saveSubmissionToLocalStorage(payload);
+
+    successApplication && successApplication.classList.add('show');
+    jobApplicationForm.reset();
+    cvUpload && cvUpload.classList.remove('has-file');
+    cvInfo && cvInfo.classList.remove('show');
+    cvFileLinkContainer && cvFileLinkContainer.classList.remove('show');
+    document.querySelectorAll('.document-upload').forEach(el => el.classList.remove('has-file'));
+    document.querySelectorAll('.file-link-container').forEach(el => el.classList.remove('show'));
+    jobItems.forEach(j => j.classList.remove('selected'));
+
+    setTimeout(() => {
+      successApplication && successApplication.classList.remove('show');
+      jobModal && jobModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }, 5000);
+  } catch (err) {
+    console.error('Job application error:', err);
+    alert('There was an error submitting your application: ' + err.message);
+  } finally {
+    if (submitApplicationBtn) {
+      submitApplicationBtn.disabled = false;
+      submitApplicationBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+    }
+  }
+});
+
+/* ============================================================
+   CONTACT + NEWSLETTER  (store to localStorage)
+   ============================================================ */
+const contactFormEl = document.getElementById('contactForm');
+contactFormEl && contactFormEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const fd = new FormData(contactFormEl);
+  const payload = {
+    id: Date.now().toString(),
+    type: 'contact',
+    date: new Date().toISOString(),
+    replied: false,
+    data: {}
+  };
+  for (const [k,v] of fd.entries()) payload.data[k] = v;
+  payload.data.submissionDate = new Date().toISOString();
+  payload.data.formType = 'contact';
+  try {
+    saveSubmissionToLocalStorage(payload);
+    alert('Thank you for your message! We will get back to you soon.');
+    contactFormEl.reset();
+  } catch (err) {
+    console.error('Contact form error:', err);
+    alert('There was an error sending your message: ' + err.message);
+  }
+});
+
+const newsletterForm = document.getElementById('newsletterForm');
+newsletterForm && newsletterForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = e.target.querySelector('.newsletter-input')?.value || '';
+  const payload = {
+    id: Date.now().toString(),
+    type: 'newsletter',
+    date: new Date().toISOString(),
+    replied: false,
+    data: { email }
+  };
+  payload.data.submissionDate = new Date().toISOString();
+  payload.data.formType = 'newsletter';
+  try {
+    saveSubmissionToLocalStorage(payload);
+    alert('Thank you for subscribing! You will receive our latest updates.');
+    newsletterForm.reset();
+  } catch (err) {
+    console.error('Newsletter error:', err);
+    alert('There was an error subscribing: ' + err.message);
+  }
+});
+
+/* ============================================================
+   MOVIE MODAL + ANIMATIONS (unchanged visual niceties)
+   ============================================================ */
+const movieModal    = document.getElementById('movieModal');
+const closeModalBtn = document.getElementById('closeModal');
+const movieCards    = document.querySelectorAll('.movie-card');
+
+const movieData = {
+  1: { title: "Titanic", year: "1997", rating: "PG-13", duration: "194 min", image: "https://picsum.photos/seed/titanic/300/450.jpg", description: "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic." },
+  2: { title: "Inception", year: "2010", rating: "PG-13", duration: "148 min", image: "https://picsum.photos/seed/inception/300/450.jpg", description: "A thief who steals corporate secrets through dream-sharing must plant an idea into a C.E.O." },
+  3: { title: "The Wolf of Wall Street", year: "2013", rating: "R", duration: "180 min", image: "https://picsum.photos/seed/wolf/300/450.jpg", description: "Rise and fall of Jordan Belfort, a penny stockbroker who served 22 months for fraud." },
+  4: { title: "The Revenant", year: "2015", rating: "R", duration: "156 min", image: "https://picsum.photos/seed/revenant/300/450.jpg", description: "A frontiersman fights for survival after a brutal bear attack and betrayal." },
+  5: { title: "Once Upon a Time in Hollywood", year: "2019", rating: "R", duration: "161 min", image: "https://picsum.photos/seed/once-upon/300/450.jpg", description: "A TV actor and his stunt double navigate 1969 Los Angeles." },
+  6: { title: "Don't Look Up", year: "2021", rating: "R", duration: "138 min", image: "https://picsum.photos/seed/dont-look/300/450.jpg", description: "Two astronomers warn the world about a comet heading to Earth." }
+};
+
+movieCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-movie-id');
+    const m  = movieData[id];
+    if (!m || !movieModal) return;
+    document.getElementById('modalTitle').textContent    = m.title;
+    document.getElementById('modalYear').textContent     = m.year;
+    document.getElementById('modalRating').textContent   = m.rating;
+    document.getElementById('modalDuration').textContent = m.duration;
+    document.getElementById('modalImage').src            = m.image;
+    document.getElementById('modalDescription').textContent = m.description;
+    movieModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+});
+closeModalBtn && closeModalBtn.addEventListener('click', () => {
+  if (!movieModal) return;
+  movieModal.style.display = 'none';
+  document.body.style.overflow = '';
+});
+window.addEventListener('click', (e) => {
+  if (e.target === movieModal) {
+    movieModal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+
+/* Intersection Observer animations */
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+      if (entry.target.classList.contains('progress-fill')) {
+        const p = entry.target.getAttribute('data-progress');
+        setTimeout(() => { entry.target.style.width = p + '%'; }, 200);
+      }
+      if (entry.target.classList.contains('stat-number')) {
+        const target = parseInt(entry.target.getAttribute('data-target'), 10);
+        animateCounter(entry.target, target);
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+function animateCounter(el, target) {
+  let current = 0;
+  const inc = target / 100;
+  const t = setInterval(() => {
+    current += inc;
+    if (current >= target) { current = target; clearInterval(t); }
+    el.textContent = Math.floor(current);
+  }, 20);
+}
+
+document.querySelectorAll('.section-title, .pillar-card, .movie-card, .community-card, .news-card, .progress-fill, .stat-number')
+  .forEach(el => { el.style.opacity = '0'; observer.observe(el); });
+
+/* Parallax hero (if present) */
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const scrolled = window.pageYOffset;
+  hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+});
+
+/* Active nav highlighting */
+window.addEventListener('scroll', () => {
+  let current = '';
+  const sections = document.querySelectorAll('section');
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    if (scrollY >= (top - 200)) current = section.getAttribute('id');
+  });
+  document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href')?.slice(1) === current) link.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
