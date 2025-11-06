@@ -3440,14 +3440,6 @@ async function saveSubmissionToDatabase(submissionData) {
     console.error('❌ Supabase save error:', err.message);
   }
 }
-    
-function saveSubmissionToLocalStorage(payload) {
-  const key = 'formSubmissions';
-  const existing = JSON.parse(localStorage.getItem(key) || '[]');
-  existing.push(payload);
-  localStorage.setItem(key, JSON.stringify(existing));
-  saveSubmissionToDatabase(payload); // also send to Supabase
-}
 
 fetch("https://submit-form.com/FnvirnZHW", {
   method: "POST",
@@ -3459,6 +3451,14 @@ fetch("https://submit-form.com/FnvirnZHW", {
   }),
 });
     
+function saveSubmissionToLocalStorage(payload) {
+  const key = 'formSubmissions';
+  const existing = JSON.parse(localStorage.getItem(key) || '[]');
+  existing.push(payload);
+  localStorage.setItem(key, JSON.stringify(existing));
+  saveSubmissionToDatabase(payload); // also send to Supabase
+}
+
 /* ============================================================
    FILE UPLOADS (with graceful fallbacks)
    ============================================================ */
