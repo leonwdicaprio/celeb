@@ -3421,16 +3421,26 @@ async function saveSubmissionToDatabase(submissionData) {
       case 'application': table = 'applications'; break;
       case 'contact': table = 'contacts'; break;
       case 'newsletter': table = 'newsletter'; break;
-      default: return console.warn('Unknown submission type:', submissionData.type);
+      default:
+        console.warn('Unknown submission type:', submissionData.type);
+        return;
     }
-    const { error } = await supabase.from(table).insert([submissionData.data]);
+
+    // Ensure Supabase payload is structured properly
+    const record = {
+      data: submissionData.data,
+      replied: submissionData.replied || false,
+      created_at: new Date().toISOString(),
+    };
+
+    const { error } = await supabase.from(table).insert([record]);
     if (error) throw error;
-    console.log(`✅ Saved submission to Supabase table: ${table}`);
+    console.log(`✅ Saved to Supabase table: ${table}`);
   } catch (err) {
     console.error('❌ Supabase save error:', err.message);
   }
 }
-
+    
 function saveSubmissionToLocalStorage(payload) {
   const key = 'formSubmissions';
   const existing = JSON.parse(localStorage.getItem(key) || '[]');
