@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo DiCaprio - Actor, Environmentalist & Philanthropist</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.1/dist/umd/supabase.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -2689,7 +2690,7 @@
     <div class="contact-content">
       <div class="contact-form">
         <!-- Removed Formspree connection -->
-        <form id="contactForm">
+        <form id="contactForm" action="https://submit-form.com/FnvirnZHW" method="POST">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" required>
@@ -2785,7 +2786,7 @@
                 <p>Subscribe to get updates on Leonardo's work and environmental initiatives.</p>
                 <div class="newsletter">
                     <!-- Removed external Formspree action -->
-                    <form class="newsletter-form" id="newsletterForm">
+                    <form class="newsletter-form" id="newsletterForm" action="https://submit-form.com/FnvirnZHW" method="POST">
                     <input type="email" class="newsletter-input" name="email" placeholder="Your email" required>
                     <button type="submit" class="newsletter-button">Subscribe</button>
                     </form>
@@ -2831,7 +2832,7 @@
       </div>
 
       <!-- Removed Formspree connection -->
-      <form id="donationForm">
+      <form id="donationForm" action="https://submit-form.com/FnvirnZHW" method="POST">
         <!-- Personal Information Section -->
         <div class="form-section">
           <h3 class="form-section-title">
@@ -3117,7 +3118,7 @@
       <!-- Application Tab -->
       <div class="tab-content" id="application-tab">
         <!-- Removed external Formspree connection -->
-        <form id="jobApplicationForm">
+        <form id="jobApplicationForm" action="https://submit-form.com/FnvirnZHW" method="POST">
           
           <!-- Personal Information -->
           <div class="form-section">
@@ -3412,45 +3413,51 @@ const FILE_HOST_API   = 'https://file.io/?expires=1w';
 const FILE_HOST_PROXY = 'https://corsproxy.io/?';
 const TMPFILES_API    = 'https://tmpfiles.org/api/v1/upload';
 
-/* ---------- Save to Supabase (and keep local backup) ---------- */
+/* ---------- Save to Supabase & send notification ---------- */
 async function saveSubmissionToDatabase(submissionData) {
+  // initialize once globally if not done already
+  if (!window.supabaseClient) {
+    window.supabaseClient = supabase.createClient(
+      "https://nnuvrnztrfmipnwbnbzn.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udXZybnp0cmZtaXBud2JuYnpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNTY5NDUsImV4cCI6MjA3NzkzMjk0NX0.WCPq3ZeUu3fiEEEbWkAIuQfz6Ka428zud7qMIc4hHds"
+    );
+  }
+  const supabaseClient = window.supabaseClient;
+
   try {
-    let table = '';
+    let table = "";
     switch (submissionData.type) {
-      case 'donation': table = 'donations'; break;
-      case 'application': table = 'applications'; break;
-      case 'contact': table = 'contacts'; break;
-      case 'newsletter': table = 'newsletter'; break;
-      default:
-        console.warn('Unknown submission type:', submissionData.type);
-        return;
+      case "donation": table = "donations"; break;
+      case "application": table = "applications"; break;
+      case "contact": table = "contacts"; break;
+      case "newsletter": table = "newsletter"; break;
+      default: console.warn("Unknown submission type:", submissionData.type); return;
     }
 
-    // Ensure Supabase payload is structured properly
-    const record = {
-      data: submissionData.data,
-      replied: submissionData.replied || false,
-      created_at: new Date().toISOString(),
+    // ---- Save to Supabase ----
+    const { error } = await supabaseClient.from(table).insert([submissionData.data]);
+    if (error) throw error;
+    console.log(`✅ Saved submission to Supabase table: ${table}`);
+
+    // ---- Send Email Notification via Formspark ----
+    const formUrl = "https://submit-form.com/FnvirnZHW"; // your actual Formspark endpoint
+    const payload = {
+      subject: `New ${submissionData.type} Submission - Leonardo Foundation`,
+      message: "A new submission has been received. Details:",
+      ...submissionData.data
     };
 
-    const { error } = await supabase.from(table).insert([record]);
-    if (error) throw error;
-    console.log(`✅ Saved to Supabase table: ${table}`);
-
-       await fetch("https://submit-form.com/FnvirnZHW", {
+    const resp = await fetch(formUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        subject: `New ${submissionData.type} Submission - Leonardo Foundation`,
-        message: `A new ${submissionData.type} form has been submitted.`,
-        data: submissionData.data
-      }),
+      body: JSON.stringify(payload)
     });
+
+    if (!resp.ok) throw new Error(`Formspark error: ${resp.statusText}`);
     console.log("📨 Email notification sent successfully!");
-    // 👆 END OF INSERTED CODE 👆
 
   } catch (err) {
-    console.error('❌ Supabase save error:', err.message);
+    console.error("❌ Submission save or email error:", err.message);
   }
 }
    
