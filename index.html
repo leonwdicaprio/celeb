@@ -2786,7 +2786,7 @@
                 <p>Subscribe to get updates on Leonardo's work and environmental initiatives.</p>
                 <div class="newsletter">
                     <!-- Removed external Formspree action -->
-                    <form class="newsletter-form" id="newsletterForm" action="https://submit-form.com/FnvirnZHW" method="POST">
+                    <form id="newsletterForm" action="https://submit-form.com/FnvirnZHW" method="POST">
                     <input type="email" class="newsletter-input" name="email" placeholder="Your email" required>
                     <button type="submit" class="newsletter-button">Subscribe</button>
                     </form>
@@ -4198,6 +4198,94 @@ window.addEventListener('scroll', () => {
     if (link.getAttribute('href')?.slice(1) === current) link.classList.add('active');
   });
 });
+
+</script>
+
+<script>
+/* ============================================================
+   FORMSPARK UNIVERSAL HANDLER (no redirect + popup confirmation)
+   ============================================================ */
+document.querySelectorAll('form[action^="https://submit-form.com"]').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Convert to JSON
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // 👇 Include any file upload URLs if stored in JS variables
+    document.querySelectorAll('input[type="hidden"][name$="FileLink"]').forEach(h => {
+      data[h.name] = h.value;
+    });
+
+    // Submit to Formspark
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        showSuccessPopup("✅ Your form has been submitted successfully!");
+        form.reset();
+        // Clear file states if needed
+        document.querySelectorAll('.has-file').forEach(el => el.classList.remove('has-file'));
+      } else {
+        showErrorPopup("✅ Your form has been submitted successfully!");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      showErrorPopup("⚠️ Network issue — please check your connection.");
+    }
+  });
+});
+
+/* ---------------------- Popup Messages ---------------------- */
+function showSuccessPopup(message) {
+  createPopup(message, "#1a5f3f", "#4caf50");
+}
+function showErrorPopup(message) {
+  createPopup(message, "#a10b0b", "#ffc107");
+}
+function createPopup(message, bg, accent) {
+  const popup = document.createElement("div");
+  popup.className = "success-popup";
+  popup.innerHTML = `
+    <div class="popup-content" style="display:flex;align-items:center;gap:8px;">
+      <i class="fas fa-check-circle" style="color:${accent};font-size:1.2rem;"></i>
+      <span>${message}</span>
+    </div>`;
+  popup.style.background = bg;
+  document.body.appendChild(popup);
+  setTimeout(() => popup.classList.add("show"), 50);
+  setTimeout(() => popup.classList.remove("show"), 4000);
+  setTimeout(() => popup.remove(), 4500);
+}
+
+/* -------------------------- Styles -------------------------- */
+const style = document.createElement("style");
+style.textContent = `
+.success-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+  z-index: 10000;
+}
+.success-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+`;
+document.head.appendChild(style);
 </script>
 </body>
 </html>
