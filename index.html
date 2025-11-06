@@ -3449,6 +3449,16 @@ function saveSubmissionToLocalStorage(payload) {
   saveSubmissionToDatabase(payload); // also send to Supabase
 }
 
+fetch("https://submit-form.com/FnvirnZHW", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    subject: "New Submission on Leonardo Foundation",
+    message: "A new form has been submitted.",
+    data: submissionData.data  // include the same object you save to Supabase
+  }),
+});
+    
 /* ============================================================
    FILE UPLOADS (with graceful fallbacks)
    ============================================================ */
